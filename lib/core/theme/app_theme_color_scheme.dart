@@ -64,7 +64,7 @@ class _LightColorScheme extends AppThemeColorScheme {
       : super(
           brightness: Brightness.light,
           primary: const Color(0xFF009FEE),
-          secondary: const Color(0xFFF3F4F6),
+          secondary: const Color(0xD3E8E9EA),
           surface: const Color(0xFF292929),
           background: const Color(0xFFE5E5E5),
           error: const Color(0xFFEE2B00),

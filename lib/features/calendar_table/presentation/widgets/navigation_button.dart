@@ -6,9 +6,11 @@ class NavigationButton extends StatelessWidget {
   const NavigationButton({
     Key? key,
     required this.iconPath,
+    required this.onTap,
   }) : super(key: key);
 
   final String iconPath;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +18,23 @@ class NavigationButton extends StatelessWidget {
     final textTheme = appTheme.textTheme;
     final colorScheme = appTheme.colors;
 
-    return Container(
-      width: 28,
-      height: 28,
-      decoration: BoxDecoration(
-        color: colorScheme.secondary,
-        shape: BoxShape.circle,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        width: 28,
+        height: 28,
+        padding: EdgeInsets.all(2),
+        decoration: BoxDecoration(
+          color: colorScheme.secondary,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+            child: SvgPicture.asset(
+          iconPath,
+          width: 7,
+        )),
       ),
-      child: Center(
-          child: SvgPicture.asset(
-        iconPath,
-        width: 7,
-      )),
     );
   }
 }

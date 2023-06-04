@@ -18,11 +18,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow_right.svg
   String get arrowRight => 'assets/icons/arrow_right.svg';
 
+  /// File path: assets/icons/back_arrow.svg
+  String get backArrow => 'assets/icons/back_arrow.svg';
+
   /// File path: assets/icons/clock.svg
   String get clock => 'assets/icons/clock.svg';
 
   /// File path: assets/icons/down_arrow.svg
   String get downArrow => 'assets/icons/down_arrow.svg';
+
+  /// File path: assets/icons/drop_down_arrow.svg
+  String get dropDownArrow => 'assets/icons/drop_down_arrow.svg';
 
   /// File path: assets/icons/location.svg
   String get location => 'assets/icons/location.svg';
@@ -31,8 +37,16 @@ class $AssetsIconsGen {
   String get notifications => 'assets/icons/notifications.svg';
 
   /// List of all assets
-  List<String> get values =>
-      [arrowLeft, arrowRight, clock, downArrow, location, notifications];
+  List<String> get values => [
+        arrowLeft,
+        arrowRight,
+        backArrow,
+        clock,
+        downArrow,
+        dropDownArrow,
+        location,
+        notifications
+      ];
 }
 
 class Assets {

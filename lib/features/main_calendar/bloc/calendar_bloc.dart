@@ -3,44 +3,71 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'calendar_bloc.freezed.dart';
 
-class CalendarBloc extends Bloc<CalendarTableEvent, CalendarTableState> {
-  CalendarBloc() : super(CalendarTableState.initial()) {
-    on<CalendarTableEvent>(
+class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
+  CalendarBloc() : super(CalendarState.initial()) {
+    on<CalendarEvent>(
       (event, emitter) async {
-        await event.mapOrNull<Future<void>>();
+        await event.map<Future<void>>(
+          updateSelectedDate: (_UpdateSelectedDateCalendarEvent event) =>
+              _updateSelectedDate(event, emitter),
+          loadEventsForMonth: (_LoadEventsForMonthCalendarEvent event) =>
+              _loadEventsForMonth(event, emitter),
+          loadInitialHandler: (_LoadInitialCalendarEvent event) =>
+              _loadInitialHandler(event, emitter),
+        );
       },
     );
-    add(const CalendarTableEvent.loadInitialHandler());
+    add(const CalendarEvent.loadInitialHandler());
   }
 
-  late final DateTime _today;
+  final DateTime _today = DateTime.now();
+
+  DateTime get today => _today;
+
+  DateTime get selectedDate => state.map(
+        initial: (_) => _today,
+        loading: (s) => s.selectedDate,
+        loadSuccess: (s) => s.selectedDate,
+      );
 
   Future<void> _loadInitialHandler(
-    _LoadInitialCalendarTableEvent event,
+    _LoadInitialCalendarEvent event,
     Emitter emitter,
   ) async {
-    _today = DateTime.now();
-    // emitter(CalendarTableState.loading());
+    emitter(CalendarState.loadSuccess(selectedDate: _today));
+  }
+
+  Future<void> _loadEventsForMonth(
+    _LoadEventsForMonthCalendarEvent event,
+    Emitter emitter,
+  ) async {}
+
+  Future<void> _updateSelectedDate(
+    _UpdateSelectedDateCalendarEvent event,
+    Emitter emitter,
+  ) async {
+    emitter(CalendarState.loadSuccess(selectedDate: event.date));
   }
 }
 
 @freezed
-class CalendarTableEvent with _$CalendarTableEvent {
-  const factory CalendarTableEvent.loadInitialHandler() =
-      _LoadInitialCalendarTableEvent;
+class CalendarEvent with _$CalendarEvent {
+  const factory CalendarEvent.loadInitialHandler() = _LoadInitialCalendarEvent;
 
-  const factory CalendarTableEvent.nextMonth() = _NextMonthCalendarTableEvent;
+  const factory CalendarEvent.loadEventsForMonth({required DateTime date}) =
+      _LoadEventsForMonthCalendarEvent;
 
-  const factory CalendarTableEvent.previousMonth() =
-      _PreviosMonthCalendarTableEvent;
+  const factory CalendarEvent.updateSelectedDate({required DateTime date}) =
+      _UpdateSelectedDateCalendarEvent;
 }
 
 @freezed
-class CalendarTableState with _$CalendarTableState {
-  const factory CalendarTableState.initial() = _InitialCalendarTableState;
+class CalendarState with _$CalendarState {
+  const factory CalendarState.initial() = _InitialCalendarState;
 
-  const factory CalendarTableState.loading() = _LoadingCalendarTableState;
+  const factory CalendarState.loading({required DateTime selectedDate}) =
+      _LoadingCalendarState;
 
-  const factory CalendarTableState.loadSuccess() =
-      _LoadSuccessCalendarTableState;
+  const factory CalendarState.loadSuccess({required DateTime selectedDate}) =
+      _LoadSuccessCalendarState;
 }
