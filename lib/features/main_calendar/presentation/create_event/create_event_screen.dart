@@ -1,15 +1,19 @@
+import 'package:alif_calendar/core/domain/event_model.dart';
 import 'package:alif_calendar/core/extensions/context_extensions.dart';
 import 'package:alif_calendar/core/presentation/custom_app_bar.dart';
 import 'package:alif_calendar/core/theme/app_theme.dart';
 import 'package:alif_calendar/core/utils/color_utils.dart';
-import 'package:alif_calendar/features/event/create_event/bloc/event_creation_bloc.dart';
-import 'package:alif_calendar/features/event/create_event/presentation/widgets/color_drop_down_button.dart';
-import 'package:alif_calendar/features/event/create_event/presentation/widgets/custom_text_field.dart';
+import 'package:alif_calendar/features/main_calendar/bloc/calendar_bloc.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/create_event/widgets/color_drop_down_button.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/create_event/widgets/custom_text_field.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateEventScreen extends StatefulWidget {
-  const CreateEventScreen({Key? key}) : super(key: key);
+  const CreateEventScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<CreateEventScreen> createState() => _CreateEventScreenState();
@@ -20,7 +24,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   late final TextEditingController _descriptionController;
   late final TextEditingController _locationController;
   late final TextEditingController _timeController;
-  int _priority = priorityIndexes.first;
+  late int _priority;
 
   @override
   void initState() {
@@ -29,6 +33,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     _descriptionController = TextEditingController();
     _locationController = TextEditingController();
     _timeController = TextEditingController();
+    _priority = priorityIndexes.first;
   }
 
   @override
@@ -48,14 +53,42 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
     return GestureDetector(
       onTap: () => context.unfocus,
-      child: BlocBuilder<EventCreationBloc, EventCreationState>(
-          builder: (context, state) {
+      child:
+          BlocBuilder<CalendarBloc, CalendarState>(builder: (context, state) {
         return Scaffold(
           persistentFooterButtons: [
             RawMaterialButton(
               onPressed: () {
-                final bloc = BlocProvider.of<EventCreationBloc>(context);
-                bloc.add(EventCreationEvent.createEvent());
+                final name = _nameController.text;
+                final description = _descriptionController.text;
+                final time = _timeController.text;
+                final location = _locationController.text;
+
+                if (name.isNotEmpty) {
+                  final bloc = BlocProvider.of<CalendarBloc>(context);
+                  final date = bloc.selectedDate;
+                  bloc.add(CalendarEvent.createEvent(
+                    event: EventModel(
+                      name: name,
+                      time: time,
+                      priority: _priority,
+                      description: description,
+                      location: location,
+                      date: date,
+                    ),
+                  ));
+                  context.router.pop();
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            title: Text(
+                              'Please name your event',
+                              textAlign: TextAlign.center,
+                              style: textTheme.bodyText1,
+                            ),
+                          ));
+                }
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),

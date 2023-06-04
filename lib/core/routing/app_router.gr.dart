@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CreateEventPage(),
       );
     },
+    CalendarWrapperPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(child: const CalendarWrapperPage()),
+      );
+    },
   };
 }
 
@@ -54,6 +60,20 @@ class CreateEventPageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CreateEventPageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CalendarWrapperPage]
+class CalendarWrapperPageRoute extends PageRouteInfo<void> {
+  const CalendarWrapperPageRoute({List<PageRouteInfo>? children})
+      : super(
+          CalendarWrapperPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CalendarWrapperPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
