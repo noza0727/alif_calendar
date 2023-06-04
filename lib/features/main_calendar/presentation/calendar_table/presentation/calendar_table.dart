@@ -1,8 +1,9 @@
+import 'package:alif_calendar/core/domain/event_model.dart';
 import 'package:alif_calendar/core/theme/app_theme.dart';
 import 'package:alif_calendar/core/utils/color_utils.dart';
 import 'package:alif_calendar/core/utils/date_utils.dart';
-import 'package:alif_calendar/features/calendar_table/domain/weekdays.dart';
-import 'package:alif_calendar/features/calendar_table/presentation/widgets/event_dot.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/calendar_table/domain/weekdays.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/calendar_table/presentation/widgets/event_dot.dart';
 import 'package:alif_calendar/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,20 +16,31 @@ class CalendarTable extends StatefulWidget {
     this.onMonthChanged,
     this.width,
     this.horizontalPadding,
+    this.selectDate,
+    this.eventsForMonth = const [],
   }) : super(key: key);
 
   final Function(DateTime dateTime)? onDayTapped;
   final Function(DateTime dateTime)? onMonthChanged;
   final double? width;
   final double? horizontalPadding;
+  final DateTime? selectDate;
+  final List<EventModel> eventsForMonth;
 
   @override
   State<CalendarTable> createState() => _CalendarState();
 }
 
 class _CalendarState extends State<CalendarTable> {
-  DateTime selectedDate = DateTime.now();
-  DateTime? tappedDay;
+  late DateTime selectedDate;
+  late DateTime tappedDay;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = widget.selectDate ?? DateTime.now();
+    tappedDay = selectedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +141,7 @@ class _CalendarState extends State<CalendarTable> {
                             child: SizedBox(
                               width: boxSize,
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
@@ -156,11 +169,19 @@ class _CalendarState extends State<CalendarTable> {
                                     ),
                                   ),
                                   Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [1, 2, 3]
+                                    children: widget.eventsForMonth
+                                        .where((e) =>
+                                            e.date.day == day &&
+                                            e.date.month == selectedDate.month)
+                                        .take(4)
+                                        .map((e) => e.priority)
                                         .map<Widget>((e) => Padding(
                                               padding:
-                                                  const EdgeInsets.all(1.5),
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 1.5),
                                               child: EventDot(
                                                   color: priorityColor(e)),
                                             ))

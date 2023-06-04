@@ -1,4 +1,4 @@
-import 'package:alif_calendar/features/calendar_table/domain/weekdays.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/calendar_table/domain/weekdays.dart';
 import 'package:intl/intl.dart';
 
 DateTime normalizeDate(DateTime date) {

@@ -1,14 +1,18 @@
 class EventModel {
+  int? id;
   String name;
   String? description;
   String? location;
   int priority;
-  DateTime time;
+  String? time;
+  DateTime date;
 
   EventModel({
+    this.id,
     required this.name,
-    required this.time,
+    this.time,
     required this.priority,
+    required this.date,
     this.location,
     this.description,
   });

@@ -17,14 +17,16 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 18, top: 12, bottom: 16, right: 18),
+        padding: const EdgeInsets.only(left: 18, top: 22, right: 18),
         child: Row(
           children: [
             InkWell(
-              onTap: onLeadingTap ?? () => context.router.pop(),
-              child:
-                  SvgPicture.asset(leadingIconPath ?? Assets.icons.backArrow),
+              onTap: () => context.router.pop(),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20.0, top: 16.0),
+                child:
+                    SvgPicture.asset(leadingIconPath ?? Assets.icons.backArrow),
+              ),
             )
           ],
         ),
