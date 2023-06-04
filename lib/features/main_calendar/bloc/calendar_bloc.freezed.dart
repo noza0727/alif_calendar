@@ -15,66 +15,71 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CalendarTableEvent {
+mixin _$CalendarEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
-    required TResult Function() nextMonth,
-    required TResult Function() previousMonth,
+    required TResult Function(DateTime date) loadEventsForMonth,
+    required TResult Function(DateTime date) updateSelectedDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
-    TResult? Function()? nextMonth,
-    TResult? Function()? previousMonth,
+    TResult? Function(DateTime date)? loadEventsForMonth,
+    TResult? Function(DateTime date)? updateSelectedDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
-    TResult Function()? nextMonth,
-    TResult Function()? previousMonth,
+    TResult Function(DateTime date)? loadEventsForMonth,
+    TResult Function(DateTime date)? updateSelectedDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInitialCalendarTableEvent value)
+    required TResult Function(_LoadInitialCalendarEvent value)
         loadInitialHandler,
-    required TResult Function(_NextMonthCalendarTableEvent value) nextMonth,
-    required TResult Function(_PreviosMonthCalendarTableEvent value)
-        previousMonth,
+    required TResult Function(_LoadEventsForMonthCalendarEvent value)
+        loadEventsForMonth,
+    required TResult Function(_UpdateSelectedDateCalendarEvent value)
+        updateSelectedDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult? Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult? Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult? Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult? Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult? Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CalendarTableEventCopyWith<$Res> {
-  factory $CalendarTableEventCopyWith(
-          CalendarTableEvent value, $Res Function(CalendarTableEvent) then) =
-      _$CalendarTableEventCopyWithImpl<$Res, CalendarTableEvent>;
+abstract class $CalendarEventCopyWith<$Res> {
+  factory $CalendarEventCopyWith(
+          CalendarEvent value, $Res Function(CalendarEvent) then) =
+      _$CalendarEventCopyWithImpl<$Res, CalendarEvent>;
 }
 
 /// @nodoc
-class _$CalendarTableEventCopyWithImpl<$Res, $Val extends CalendarTableEvent>
-    implements $CalendarTableEventCopyWith<$Res> {
-  _$CalendarTableEventCopyWithImpl(this._value, this._then);
+class _$CalendarEventCopyWithImpl<$Res, $Val extends CalendarEvent>
+    implements $CalendarEventCopyWith<$Res> {
+  _$CalendarEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -83,40 +88,37 @@ class _$CalendarTableEventCopyWithImpl<$Res, $Val extends CalendarTableEvent>
 }
 
 /// @nodoc
-abstract class _$$_LoadInitialCalendarTableEventCopyWith<$Res> {
-  factory _$$_LoadInitialCalendarTableEventCopyWith(
-          _$_LoadInitialCalendarTableEvent value,
-          $Res Function(_$_LoadInitialCalendarTableEvent) then) =
-      __$$_LoadInitialCalendarTableEventCopyWithImpl<$Res>;
+abstract class _$$_LoadInitialCalendarEventCopyWith<$Res> {
+  factory _$$_LoadInitialCalendarEventCopyWith(
+          _$_LoadInitialCalendarEvent value,
+          $Res Function(_$_LoadInitialCalendarEvent) then) =
+      __$$_LoadInitialCalendarEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LoadInitialCalendarTableEventCopyWithImpl<$Res>
-    extends _$CalendarTableEventCopyWithImpl<$Res,
-        _$_LoadInitialCalendarTableEvent>
-    implements _$$_LoadInitialCalendarTableEventCopyWith<$Res> {
-  __$$_LoadInitialCalendarTableEventCopyWithImpl(
-      _$_LoadInitialCalendarTableEvent _value,
-      $Res Function(_$_LoadInitialCalendarTableEvent) _then)
+class __$$_LoadInitialCalendarEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_LoadInitialCalendarEvent>
+    implements _$$_LoadInitialCalendarEventCopyWith<$Res> {
+  __$$_LoadInitialCalendarEventCopyWithImpl(_$_LoadInitialCalendarEvent _value,
+      $Res Function(_$_LoadInitialCalendarEvent) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LoadInitialCalendarTableEvent
-    implements _LoadInitialCalendarTableEvent {
-  const _$_LoadInitialCalendarTableEvent();
+class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
+  const _$_LoadInitialCalendarEvent();
 
   @override
   String toString() {
-    return 'CalendarTableEvent.loadInitialHandler()';
+    return 'CalendarEvent.loadInitialHandler()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadInitialCalendarTableEvent);
+            other is _$_LoadInitialCalendarEvent);
   }
 
   @override
@@ -126,8 +128,8 @@ class _$_LoadInitialCalendarTableEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
-    required TResult Function() nextMonth,
-    required TResult Function() previousMonth,
+    required TResult Function(DateTime date) loadEventsForMonth,
+    required TResult Function(DateTime date) updateSelectedDate,
   }) {
     return loadInitialHandler();
   }
@@ -136,8 +138,8 @@ class _$_LoadInitialCalendarTableEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
-    TResult? Function()? nextMonth,
-    TResult? Function()? previousMonth,
+    TResult? Function(DateTime date)? loadEventsForMonth,
+    TResult? Function(DateTime date)? updateSelectedDate,
   }) {
     return loadInitialHandler?.call();
   }
@@ -146,8 +148,8 @@ class _$_LoadInitialCalendarTableEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
-    TResult Function()? nextMonth,
-    TResult Function()? previousMonth,
+    TResult Function(DateTime date)? loadEventsForMonth,
+    TResult Function(DateTime date)? updateSelectedDate,
     required TResult orElse(),
   }) {
     if (loadInitialHandler != null) {
@@ -159,11 +161,12 @@ class _$_LoadInitialCalendarTableEvent
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInitialCalendarTableEvent value)
+    required TResult Function(_LoadInitialCalendarEvent value)
         loadInitialHandler,
-    required TResult Function(_NextMonthCalendarTableEvent value) nextMonth,
-    required TResult Function(_PreviosMonthCalendarTableEvent value)
-        previousMonth,
+    required TResult Function(_LoadEventsForMonthCalendarEvent value)
+        loadEventsForMonth,
+    required TResult Function(_UpdateSelectedDateCalendarEvent value)
+        updateSelectedDate,
   }) {
     return loadInitialHandler(this);
   }
@@ -171,9 +174,11 @@ class _$_LoadInitialCalendarTableEvent
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult? Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult? Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult? Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult? Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult? Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
   }) {
     return loadInitialHandler?.call(this);
   }
@@ -181,9 +186,11 @@ class _$_LoadInitialCalendarTableEvent
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
     required TResult orElse(),
   }) {
     if (loadInitialHandler != null) {
@@ -193,80 +200,107 @@ class _$_LoadInitialCalendarTableEvent
   }
 }
 
-abstract class _LoadInitialCalendarTableEvent implements CalendarTableEvent {
-  const factory _LoadInitialCalendarTableEvent() =
-      _$_LoadInitialCalendarTableEvent;
+abstract class _LoadInitialCalendarEvent implements CalendarEvent {
+  const factory _LoadInitialCalendarEvent() = _$_LoadInitialCalendarEvent;
 }
 
 /// @nodoc
-abstract class _$$_NextMonthCalendarTableEventCopyWith<$Res> {
-  factory _$$_NextMonthCalendarTableEventCopyWith(
-          _$_NextMonthCalendarTableEvent value,
-          $Res Function(_$_NextMonthCalendarTableEvent) then) =
-      __$$_NextMonthCalendarTableEventCopyWithImpl<$Res>;
+abstract class _$$_LoadEventsForMonthCalendarEventCopyWith<$Res> {
+  factory _$$_LoadEventsForMonthCalendarEventCopyWith(
+          _$_LoadEventsForMonthCalendarEvent value,
+          $Res Function(_$_LoadEventsForMonthCalendarEvent) then) =
+      __$$_LoadEventsForMonthCalendarEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
 }
 
 /// @nodoc
-class __$$_NextMonthCalendarTableEventCopyWithImpl<$Res>
-    extends _$CalendarTableEventCopyWithImpl<$Res,
-        _$_NextMonthCalendarTableEvent>
-    implements _$$_NextMonthCalendarTableEventCopyWith<$Res> {
-  __$$_NextMonthCalendarTableEventCopyWithImpl(
-      _$_NextMonthCalendarTableEvent _value,
-      $Res Function(_$_NextMonthCalendarTableEvent) _then)
+class __$$_LoadEventsForMonthCalendarEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res,
+        _$_LoadEventsForMonthCalendarEvent>
+    implements _$$_LoadEventsForMonthCalendarEventCopyWith<$Res> {
+  __$$_LoadEventsForMonthCalendarEventCopyWithImpl(
+      _$_LoadEventsForMonthCalendarEvent _value,
+      $Res Function(_$_LoadEventsForMonthCalendarEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+  }) {
+    return _then(_$_LoadEventsForMonthCalendarEvent(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_NextMonthCalendarTableEvent implements _NextMonthCalendarTableEvent {
-  const _$_NextMonthCalendarTableEvent();
+class _$_LoadEventsForMonthCalendarEvent
+    implements _LoadEventsForMonthCalendarEvent {
+  const _$_LoadEventsForMonthCalendarEvent({required this.date});
+
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'CalendarTableEvent.nextMonth()';
+    return 'CalendarEvent.loadEventsForMonth(date: $date)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NextMonthCalendarTableEvent);
+            other is _$_LoadEventsForMonthCalendarEvent &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadEventsForMonthCalendarEventCopyWith<
+          _$_LoadEventsForMonthCalendarEvent>
+      get copyWith => __$$_LoadEventsForMonthCalendarEventCopyWithImpl<
+          _$_LoadEventsForMonthCalendarEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
-    required TResult Function() nextMonth,
-    required TResult Function() previousMonth,
+    required TResult Function(DateTime date) loadEventsForMonth,
+    required TResult Function(DateTime date) updateSelectedDate,
   }) {
-    return nextMonth();
+    return loadEventsForMonth(date);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
-    TResult? Function()? nextMonth,
-    TResult? Function()? previousMonth,
+    TResult? Function(DateTime date)? loadEventsForMonth,
+    TResult? Function(DateTime date)? updateSelectedDate,
   }) {
-    return nextMonth?.call();
+    return loadEventsForMonth?.call(date);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
-    TResult Function()? nextMonth,
-    TResult Function()? previousMonth,
+    TResult Function(DateTime date)? loadEventsForMonth,
+    TResult Function(DateTime date)? updateSelectedDate,
     required TResult orElse(),
   }) {
-    if (nextMonth != null) {
-      return nextMonth();
+    if (loadEventsForMonth != null) {
+      return loadEventsForMonth(date);
     }
     return orElse();
   }
@@ -274,114 +308,153 @@ class _$_NextMonthCalendarTableEvent implements _NextMonthCalendarTableEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInitialCalendarTableEvent value)
+    required TResult Function(_LoadInitialCalendarEvent value)
         loadInitialHandler,
-    required TResult Function(_NextMonthCalendarTableEvent value) nextMonth,
-    required TResult Function(_PreviosMonthCalendarTableEvent value)
-        previousMonth,
+    required TResult Function(_LoadEventsForMonthCalendarEvent value)
+        loadEventsForMonth,
+    required TResult Function(_UpdateSelectedDateCalendarEvent value)
+        updateSelectedDate,
   }) {
-    return nextMonth(this);
+    return loadEventsForMonth(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult? Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult? Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult? Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult? Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult? Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
   }) {
-    return nextMonth?.call(this);
+    return loadEventsForMonth?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
     required TResult orElse(),
   }) {
-    if (nextMonth != null) {
-      return nextMonth(this);
+    if (loadEventsForMonth != null) {
+      return loadEventsForMonth(this);
     }
     return orElse();
   }
 }
 
-abstract class _NextMonthCalendarTableEvent implements CalendarTableEvent {
-  const factory _NextMonthCalendarTableEvent() = _$_NextMonthCalendarTableEvent;
+abstract class _LoadEventsForMonthCalendarEvent implements CalendarEvent {
+  const factory _LoadEventsForMonthCalendarEvent(
+      {required final DateTime date}) = _$_LoadEventsForMonthCalendarEvent;
+
+  DateTime get date;
+  @JsonKey(ignore: true)
+  _$$_LoadEventsForMonthCalendarEventCopyWith<
+          _$_LoadEventsForMonthCalendarEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_PreviosMonthCalendarTableEventCopyWith<$Res> {
-  factory _$$_PreviosMonthCalendarTableEventCopyWith(
-          _$_PreviosMonthCalendarTableEvent value,
-          $Res Function(_$_PreviosMonthCalendarTableEvent) then) =
-      __$$_PreviosMonthCalendarTableEventCopyWithImpl<$Res>;
+abstract class _$$_UpdateSelectedDateCalendarEventCopyWith<$Res> {
+  factory _$$_UpdateSelectedDateCalendarEventCopyWith(
+          _$_UpdateSelectedDateCalendarEvent value,
+          $Res Function(_$_UpdateSelectedDateCalendarEvent) then) =
+      __$$_UpdateSelectedDateCalendarEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime date});
 }
 
 /// @nodoc
-class __$$_PreviosMonthCalendarTableEventCopyWithImpl<$Res>
-    extends _$CalendarTableEventCopyWithImpl<$Res,
-        _$_PreviosMonthCalendarTableEvent>
-    implements _$$_PreviosMonthCalendarTableEventCopyWith<$Res> {
-  __$$_PreviosMonthCalendarTableEventCopyWithImpl(
-      _$_PreviosMonthCalendarTableEvent _value,
-      $Res Function(_$_PreviosMonthCalendarTableEvent) _then)
+class __$$_UpdateSelectedDateCalendarEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res,
+        _$_UpdateSelectedDateCalendarEvent>
+    implements _$$_UpdateSelectedDateCalendarEventCopyWith<$Res> {
+  __$$_UpdateSelectedDateCalendarEventCopyWithImpl(
+      _$_UpdateSelectedDateCalendarEvent _value,
+      $Res Function(_$_UpdateSelectedDateCalendarEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? date = null,
+  }) {
+    return _then(_$_UpdateSelectedDateCalendarEvent(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_PreviosMonthCalendarTableEvent
-    implements _PreviosMonthCalendarTableEvent {
-  const _$_PreviosMonthCalendarTableEvent();
+class _$_UpdateSelectedDateCalendarEvent
+    implements _UpdateSelectedDateCalendarEvent {
+  const _$_UpdateSelectedDateCalendarEvent({required this.date});
+
+  @override
+  final DateTime date;
 
   @override
   String toString() {
-    return 'CalendarTableEvent.previousMonth()';
+    return 'CalendarEvent.updateSelectedDate(date: $date)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PreviosMonthCalendarTableEvent);
+            other is _$_UpdateSelectedDateCalendarEvent &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, date);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UpdateSelectedDateCalendarEventCopyWith<
+          _$_UpdateSelectedDateCalendarEvent>
+      get copyWith => __$$_UpdateSelectedDateCalendarEventCopyWithImpl<
+          _$_UpdateSelectedDateCalendarEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
-    required TResult Function() nextMonth,
-    required TResult Function() previousMonth,
+    required TResult Function(DateTime date) loadEventsForMonth,
+    required TResult Function(DateTime date) updateSelectedDate,
   }) {
-    return previousMonth();
+    return updateSelectedDate(date);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
-    TResult? Function()? nextMonth,
-    TResult? Function()? previousMonth,
+    TResult? Function(DateTime date)? loadEventsForMonth,
+    TResult? Function(DateTime date)? updateSelectedDate,
   }) {
-    return previousMonth?.call();
+    return updateSelectedDate?.call(date);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
-    TResult Function()? nextMonth,
-    TResult Function()? previousMonth,
+    TResult Function(DateTime date)? loadEventsForMonth,
+    TResult Function(DateTime date)? updateSelectedDate,
     required TResult orElse(),
   }) {
-    if (previousMonth != null) {
-      return previousMonth();
+    if (updateSelectedDate != null) {
+      return updateSelectedDate(date);
     }
     return orElse();
   }
@@ -389,104 +462,115 @@ class _$_PreviosMonthCalendarTableEvent
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInitialCalendarTableEvent value)
+    required TResult Function(_LoadInitialCalendarEvent value)
         loadInitialHandler,
-    required TResult Function(_NextMonthCalendarTableEvent value) nextMonth,
-    required TResult Function(_PreviosMonthCalendarTableEvent value)
-        previousMonth,
+    required TResult Function(_LoadEventsForMonthCalendarEvent value)
+        loadEventsForMonth,
+    required TResult Function(_UpdateSelectedDateCalendarEvent value)
+        updateSelectedDate,
   }) {
-    return previousMonth(this);
+    return updateSelectedDate(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult? Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult? Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult? Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult? Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult? Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
   }) {
-    return previousMonth?.call(this);
+    return updateSelectedDate?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInitialCalendarTableEvent value)? loadInitialHandler,
-    TResult Function(_NextMonthCalendarTableEvent value)? nextMonth,
-    TResult Function(_PreviosMonthCalendarTableEvent value)? previousMonth,
+    TResult Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
     required TResult orElse(),
   }) {
-    if (previousMonth != null) {
-      return previousMonth(this);
+    if (updateSelectedDate != null) {
+      return updateSelectedDate(this);
     }
     return orElse();
   }
 }
 
-abstract class _PreviosMonthCalendarTableEvent implements CalendarTableEvent {
-  const factory _PreviosMonthCalendarTableEvent() =
-      _$_PreviosMonthCalendarTableEvent;
+abstract class _UpdateSelectedDateCalendarEvent implements CalendarEvent {
+  const factory _UpdateSelectedDateCalendarEvent(
+      {required final DateTime date}) = _$_UpdateSelectedDateCalendarEvent;
+
+  DateTime get date;
+  @JsonKey(ignore: true)
+  _$$_UpdateSelectedDateCalendarEventCopyWith<
+          _$_UpdateSelectedDateCalendarEvent>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$CalendarTableState {
+mixin _$CalendarState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadSuccess,
+    required TResult Function(DateTime selectedDate) loading,
+    required TResult Function(DateTime selectedDate) loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadSuccess,
+    TResult? Function(DateTime selectedDate)? loading,
+    TResult? Function(DateTime selectedDate)? loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadSuccess,
+    TResult Function(DateTime selectedDate)? loading,
+    TResult Function(DateTime selectedDate)? loadSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCalendarTableState value) initial,
-    required TResult Function(_LoadingCalendarTableState value) loading,
-    required TResult Function(_LoadSuccessCalendarTableState value) loadSuccess,
+    required TResult Function(_InitialCalendarState value) initial,
+    required TResult Function(_LoadingCalendarState value) loading,
+    required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCalendarTableState value)? initial,
-    TResult? Function(_LoadingCalendarTableState value)? loading,
-    TResult? Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult? Function(_InitialCalendarState value)? initial,
+    TResult? Function(_LoadingCalendarState value)? loading,
+    TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCalendarTableState value)? initial,
-    TResult Function(_LoadingCalendarTableState value)? loading,
-    TResult Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult Function(_InitialCalendarState value)? initial,
+    TResult Function(_LoadingCalendarState value)? loading,
+    TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CalendarTableStateCopyWith<$Res> {
-  factory $CalendarTableStateCopyWith(
-          CalendarTableState value, $Res Function(CalendarTableState) then) =
-      _$CalendarTableStateCopyWithImpl<$Res, CalendarTableState>;
+abstract class $CalendarStateCopyWith<$Res> {
+  factory $CalendarStateCopyWith(
+          CalendarState value, $Res Function(CalendarState) then) =
+      _$CalendarStateCopyWithImpl<$Res, CalendarState>;
 }
 
 /// @nodoc
-class _$CalendarTableStateCopyWithImpl<$Res, $Val extends CalendarTableState>
-    implements $CalendarTableStateCopyWith<$Res> {
-  _$CalendarTableStateCopyWithImpl(this._value, this._then);
+class _$CalendarStateCopyWithImpl<$Res, $Val extends CalendarState>
+    implements $CalendarStateCopyWith<$Res> {
+  _$CalendarStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -495,38 +579,35 @@ class _$CalendarTableStateCopyWithImpl<$Res, $Val extends CalendarTableState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCalendarTableStateCopyWith<$Res> {
-  factory _$$_InitialCalendarTableStateCopyWith(
-          _$_InitialCalendarTableState value,
-          $Res Function(_$_InitialCalendarTableState) then) =
-      __$$_InitialCalendarTableStateCopyWithImpl<$Res>;
+abstract class _$$_InitialCalendarStateCopyWith<$Res> {
+  factory _$$_InitialCalendarStateCopyWith(_$_InitialCalendarState value,
+          $Res Function(_$_InitialCalendarState) then) =
+      __$$_InitialCalendarStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCalendarTableStateCopyWithImpl<$Res>
-    extends _$CalendarTableStateCopyWithImpl<$Res, _$_InitialCalendarTableState>
-    implements _$$_InitialCalendarTableStateCopyWith<$Res> {
-  __$$_InitialCalendarTableStateCopyWithImpl(
-      _$_InitialCalendarTableState _value,
-      $Res Function(_$_InitialCalendarTableState) _then)
+class __$$_InitialCalendarStateCopyWithImpl<$Res>
+    extends _$CalendarStateCopyWithImpl<$Res, _$_InitialCalendarState>
+    implements _$$_InitialCalendarStateCopyWith<$Res> {
+  __$$_InitialCalendarStateCopyWithImpl(_$_InitialCalendarState _value,
+      $Res Function(_$_InitialCalendarState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_InitialCalendarTableState implements _InitialCalendarTableState {
-  const _$_InitialCalendarTableState();
+class _$_InitialCalendarState implements _InitialCalendarState {
+  const _$_InitialCalendarState();
 
   @override
   String toString() {
-    return 'CalendarTableState.initial()';
+    return 'CalendarState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_InitialCalendarTableState);
+        (other.runtimeType == runtimeType && other is _$_InitialCalendarState);
   }
 
   @override
@@ -536,8 +617,8 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadSuccess,
+    required TResult Function(DateTime selectedDate) loading,
+    required TResult Function(DateTime selectedDate) loadSuccess,
   }) {
     return initial();
   }
@@ -546,8 +627,8 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadSuccess,
+    TResult? Function(DateTime selectedDate)? loading,
+    TResult? Function(DateTime selectedDate)? loadSuccess,
   }) {
     return initial?.call();
   }
@@ -556,8 +637,8 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadSuccess,
+    TResult Function(DateTime selectedDate)? loading,
+    TResult Function(DateTime selectedDate)? loadSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -569,9 +650,9 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCalendarTableState value) initial,
-    required TResult Function(_LoadingCalendarTableState value) loading,
-    required TResult Function(_LoadSuccessCalendarTableState value) loadSuccess,
+    required TResult Function(_InitialCalendarState value) initial,
+    required TResult Function(_LoadingCalendarState value) loading,
+    required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
   }) {
     return initial(this);
   }
@@ -579,9 +660,9 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCalendarTableState value)? initial,
-    TResult? Function(_LoadingCalendarTableState value)? loading,
-    TResult? Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult? Function(_InitialCalendarState value)? initial,
+    TResult? Function(_LoadingCalendarState value)? loading,
+    TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
   }) {
     return initial?.call(this);
   }
@@ -589,9 +670,9 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCalendarTableState value)? initial,
-    TResult Function(_LoadingCalendarTableState value)? loading,
-    TResult Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult Function(_InitialCalendarState value)? initial,
+    TResult Function(_LoadingCalendarState value)? loading,
+    TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -601,78 +682,103 @@ class _$_InitialCalendarTableState implements _InitialCalendarTableState {
   }
 }
 
-abstract class _InitialCalendarTableState implements CalendarTableState {
-  const factory _InitialCalendarTableState() = _$_InitialCalendarTableState;
+abstract class _InitialCalendarState implements CalendarState {
+  const factory _InitialCalendarState() = _$_InitialCalendarState;
 }
 
 /// @nodoc
-abstract class _$$_LoadingCalendarTableStateCopyWith<$Res> {
-  factory _$$_LoadingCalendarTableStateCopyWith(
-          _$_LoadingCalendarTableState value,
-          $Res Function(_$_LoadingCalendarTableState) then) =
-      __$$_LoadingCalendarTableStateCopyWithImpl<$Res>;
+abstract class _$$_LoadingCalendarStateCopyWith<$Res> {
+  factory _$$_LoadingCalendarStateCopyWith(_$_LoadingCalendarState value,
+          $Res Function(_$_LoadingCalendarState) then) =
+      __$$_LoadingCalendarStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime selectedDate});
 }
 
 /// @nodoc
-class __$$_LoadingCalendarTableStateCopyWithImpl<$Res>
-    extends _$CalendarTableStateCopyWithImpl<$Res, _$_LoadingCalendarTableState>
-    implements _$$_LoadingCalendarTableStateCopyWith<$Res> {
-  __$$_LoadingCalendarTableStateCopyWithImpl(
-      _$_LoadingCalendarTableState _value,
-      $Res Function(_$_LoadingCalendarTableState) _then)
+class __$$_LoadingCalendarStateCopyWithImpl<$Res>
+    extends _$CalendarStateCopyWithImpl<$Res, _$_LoadingCalendarState>
+    implements _$$_LoadingCalendarStateCopyWith<$Res> {
+  __$$_LoadingCalendarStateCopyWithImpl(_$_LoadingCalendarState _value,
+      $Res Function(_$_LoadingCalendarState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDate = null,
+  }) {
+    return _then(_$_LoadingCalendarState(
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_LoadingCalendarTableState implements _LoadingCalendarTableState {
-  const _$_LoadingCalendarTableState();
+class _$_LoadingCalendarState implements _LoadingCalendarState {
+  const _$_LoadingCalendarState({required this.selectedDate});
+
+  @override
+  final DateTime selectedDate;
 
   @override
   String toString() {
-    return 'CalendarTableState.loading()';
+    return 'CalendarState.loading(selectedDate: $selectedDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadingCalendarTableState);
+            other is _$_LoadingCalendarState &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, selectedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadingCalendarStateCopyWith<_$_LoadingCalendarState> get copyWith =>
+      __$$_LoadingCalendarStateCopyWithImpl<_$_LoadingCalendarState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadSuccess,
+    required TResult Function(DateTime selectedDate) loading,
+    required TResult Function(DateTime selectedDate) loadSuccess,
   }) {
-    return loading();
+    return loading(selectedDate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadSuccess,
+    TResult? Function(DateTime selectedDate)? loading,
+    TResult? Function(DateTime selectedDate)? loadSuccess,
   }) {
-    return loading?.call();
+    return loading?.call(selectedDate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadSuccess,
+    TResult Function(DateTime selectedDate)? loading,
+    TResult Function(DateTime selectedDate)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading();
+      return loading(selectedDate);
     }
     return orElse();
   }
@@ -680,9 +786,9 @@ class _$_LoadingCalendarTableState implements _LoadingCalendarTableState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCalendarTableState value) initial,
-    required TResult Function(_LoadingCalendarTableState value) loading,
-    required TResult Function(_LoadSuccessCalendarTableState value) loadSuccess,
+    required TResult Function(_InitialCalendarState value) initial,
+    required TResult Function(_LoadingCalendarState value) loading,
+    required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
   }) {
     return loading(this);
   }
@@ -690,9 +796,9 @@ class _$_LoadingCalendarTableState implements _LoadingCalendarTableState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCalendarTableState value)? initial,
-    TResult? Function(_LoadingCalendarTableState value)? loading,
-    TResult? Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult? Function(_InitialCalendarState value)? initial,
+    TResult? Function(_LoadingCalendarState value)? loading,
+    TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
   }) {
     return loading?.call(this);
   }
@@ -700,9 +806,9 @@ class _$_LoadingCalendarTableState implements _LoadingCalendarTableState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCalendarTableState value)? initial,
-    TResult Function(_LoadingCalendarTableState value)? loading,
-    TResult Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult Function(_InitialCalendarState value)? initial,
+    TResult Function(_LoadingCalendarState value)? loading,
+    TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -712,80 +818,110 @@ class _$_LoadingCalendarTableState implements _LoadingCalendarTableState {
   }
 }
 
-abstract class _LoadingCalendarTableState implements CalendarTableState {
-  const factory _LoadingCalendarTableState() = _$_LoadingCalendarTableState;
+abstract class _LoadingCalendarState implements CalendarState {
+  const factory _LoadingCalendarState({required final DateTime selectedDate}) =
+      _$_LoadingCalendarState;
+
+  DateTime get selectedDate;
+  @JsonKey(ignore: true)
+  _$$_LoadingCalendarStateCopyWith<_$_LoadingCalendarState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadSuccessCalendarTableStateCopyWith<$Res> {
-  factory _$$_LoadSuccessCalendarTableStateCopyWith(
-          _$_LoadSuccessCalendarTableState value,
-          $Res Function(_$_LoadSuccessCalendarTableState) then) =
-      __$$_LoadSuccessCalendarTableStateCopyWithImpl<$Res>;
+abstract class _$$_LoadSuccessCalendarStateCopyWith<$Res> {
+  factory _$$_LoadSuccessCalendarStateCopyWith(
+          _$_LoadSuccessCalendarState value,
+          $Res Function(_$_LoadSuccessCalendarState) then) =
+      __$$_LoadSuccessCalendarStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime selectedDate});
 }
 
 /// @nodoc
-class __$$_LoadSuccessCalendarTableStateCopyWithImpl<$Res>
-    extends _$CalendarTableStateCopyWithImpl<$Res,
-        _$_LoadSuccessCalendarTableState>
-    implements _$$_LoadSuccessCalendarTableStateCopyWith<$Res> {
-  __$$_LoadSuccessCalendarTableStateCopyWithImpl(
-      _$_LoadSuccessCalendarTableState _value,
-      $Res Function(_$_LoadSuccessCalendarTableState) _then)
+class __$$_LoadSuccessCalendarStateCopyWithImpl<$Res>
+    extends _$CalendarStateCopyWithImpl<$Res, _$_LoadSuccessCalendarState>
+    implements _$$_LoadSuccessCalendarStateCopyWith<$Res> {
+  __$$_LoadSuccessCalendarStateCopyWithImpl(_$_LoadSuccessCalendarState _value,
+      $Res Function(_$_LoadSuccessCalendarState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDate = null,
+  }) {
+    return _then(_$_LoadSuccessCalendarState(
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_LoadSuccessCalendarTableState
-    implements _LoadSuccessCalendarTableState {
-  const _$_LoadSuccessCalendarTableState();
+class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
+  const _$_LoadSuccessCalendarState({required this.selectedDate});
+
+  @override
+  final DateTime selectedDate;
 
   @override
   String toString() {
-    return 'CalendarTableState.loadSuccess()';
+    return 'CalendarState.loadSuccess(selectedDate: $selectedDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadSuccessCalendarTableState);
+            other is _$_LoadSuccessCalendarState &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, selectedDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadSuccessCalendarStateCopyWith<_$_LoadSuccessCalendarState>
+      get copyWith => __$$_LoadSuccessCalendarStateCopyWithImpl<
+          _$_LoadSuccessCalendarState>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() loadSuccess,
+    required TResult Function(DateTime selectedDate) loading,
+    required TResult Function(DateTime selectedDate) loadSuccess,
   }) {
-    return loadSuccess();
+    return loadSuccess(selectedDate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? loadSuccess,
+    TResult? Function(DateTime selectedDate)? loading,
+    TResult? Function(DateTime selectedDate)? loadSuccess,
   }) {
-    return loadSuccess?.call();
+    return loadSuccess?.call(selectedDate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? loadSuccess,
+    TResult Function(DateTime selectedDate)? loading,
+    TResult Function(DateTime selectedDate)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess();
+      return loadSuccess(selectedDate);
     }
     return orElse();
   }
@@ -793,9 +929,9 @@ class _$_LoadSuccessCalendarTableState
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCalendarTableState value) initial,
-    required TResult Function(_LoadingCalendarTableState value) loading,
-    required TResult Function(_LoadSuccessCalendarTableState value) loadSuccess,
+    required TResult Function(_InitialCalendarState value) initial,
+    required TResult Function(_LoadingCalendarState value) loading,
+    required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
   }) {
     return loadSuccess(this);
   }
@@ -803,9 +939,9 @@ class _$_LoadSuccessCalendarTableState
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCalendarTableState value)? initial,
-    TResult? Function(_LoadingCalendarTableState value)? loading,
-    TResult? Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult? Function(_InitialCalendarState value)? initial,
+    TResult? Function(_LoadingCalendarState value)? loading,
+    TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
   }) {
     return loadSuccess?.call(this);
   }
@@ -813,9 +949,9 @@ class _$_LoadSuccessCalendarTableState
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCalendarTableState value)? initial,
-    TResult Function(_LoadingCalendarTableState value)? loading,
-    TResult Function(_LoadSuccessCalendarTableState value)? loadSuccess,
+    TResult Function(_InitialCalendarState value)? initial,
+    TResult Function(_LoadingCalendarState value)? loading,
+    TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -825,7 +961,12 @@ class _$_LoadSuccessCalendarTableState
   }
 }
 
-abstract class _LoadSuccessCalendarTableState implements CalendarTableState {
-  const factory _LoadSuccessCalendarTableState() =
-      _$_LoadSuccessCalendarTableState;
+abstract class _LoadSuccessCalendarState implements CalendarState {
+  const factory _LoadSuccessCalendarState(
+      {required final DateTime selectedDate}) = _$_LoadSuccessCalendarState;
+
+  DateTime get selectedDate;
+  @JsonKey(ignore: true)
+  _$$_LoadSuccessCalendarStateCopyWith<_$_LoadSuccessCalendarState>
+      get copyWith => throw _privateConstructorUsedError;
 }

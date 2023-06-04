@@ -1,6 +1,8 @@
 import 'package:alif_calendar/core/theme/app_theme.dart';
+import 'package:alif_calendar/core/utils/color_utils.dart';
+import 'package:alif_calendar/core/utils/date_utils.dart';
 import 'package:alif_calendar/features/calendar_table/domain/weekdays.dart';
-import 'package:alif_calendar/features/calendar_table/utils/utils.dart';
+import 'package:alif_calendar/features/calendar_table/presentation/widgets/event_dot.dart';
 import 'package:alif_calendar/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +12,13 @@ class CalendarTable extends StatefulWidget {
   const CalendarTable({
     Key? key,
     this.onDayTapped,
+    this.onMonthChanged,
     this.width,
     this.horizontalPadding,
   }) : super(key: key);
 
   final Function(DateTime dateTime)? onDayTapped;
+  final Function(DateTime dateTime)? onMonthChanged;
   final double? width;
   final double? horizontalPadding;
 
@@ -57,9 +61,31 @@ class _CalendarState extends State<CalendarTable> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      NavigationButton(iconPath: Assets.icons.arrowLeft),
+                      NavigationButton(
+                        iconPath: Assets.icons.arrowLeft,
+                        onTap: () {
+                          setState(() {
+                            selectedDate = selectedDate.copyWith(
+                                month: selectedDate.month - 1);
+                          });
+                          if (widget.onMonthChanged != null) {
+                            widget.onMonthChanged!(selectedDate);
+                          }
+                        },
+                      ),
                       const SizedBox(width: 10),
-                      NavigationButton(iconPath: Assets.icons.arrowRight),
+                      NavigationButton(
+                        iconPath: Assets.icons.arrowRight,
+                        onTap: () {
+                          setState(() {
+                            selectedDate = selectedDate.copyWith(
+                                month: selectedDate.month + 1);
+                          });
+                          if (widget.onMonthChanged != null) {
+                            widget.onMonthChanged!(selectedDate);
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -82,9 +108,10 @@ class _CalendarState extends State<CalendarTable> {
           ),
           ListView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.only(top: 18),
+                padding: EdgeInsets.only(top: 12),
                 child: Row(
                   children: days
                       .skip(index * 7)
@@ -101,30 +128,45 @@ class _CalendarState extends State<CalendarTable> {
                             },
                             child: SizedBox(
                               width: boxSize,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color:
-                                      tappedDay != null && tappedDay!.day == day
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: tappedDay != null &&
+                                              tappedDay!.day == day &&
+                                              tappedDay!.month ==
+                                                  selectedDate.month
                                           ? colorScheme.primary
                                           : null,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
                                         '${day ?? ''}',
                                         textAlign: TextAlign.center,
                                         style: textTheme.subtitle1.copyWith(
                                             color: tappedDay != null &&
-                                                    tappedDay!.day == day
+                                                    tappedDay!.day == day &&
+                                                    tappedDay!.month ==
+                                                        selectedDate.month
                                                 ? colorScheme.white
                                                 : colorScheme.surface),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [1, 2, 3]
+                                        .map<Widget>((e) => Padding(
+                                              padding:
+                                                  const EdgeInsets.all(1.5),
+                                              child: EventDot(
+                                                  color: priorityColor(e)),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ],
                               ),
                             ),
                           ))

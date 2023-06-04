@@ -5,11 +5,13 @@ class SizedButton extends StatelessWidget {
   const SizedButton({
     Key? key,
     required this.text,
+    required this.onTap,
     this.width,
   }) : super(key: key);
 
   final double? width;
   final String text;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +19,21 @@ class SizedButton extends StatelessWidget {
     final textTheme = appTheme.textTheme;
     final colorScheme = appTheme.colors;
 
-    return Container(
-      width: width ?? 102,
-      height: 30,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: colorScheme.primary,
-      ),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: textTheme.subtitle1.copyWith(color: colorScheme.white),
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: width ?? 102,
+        height: 30,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: colorScheme.primary,
+        ),
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: textTheme.subtitle1.copyWith(color: colorScheme.white),
+          ),
         ),
       ),
     );

@@ -1,20 +1,22 @@
+import 'package:alif_calendar/core/routing/app_router.dart';
 import 'package:alif_calendar/core/theme/app_theme.dart';
-import 'package:alif_calendar/features/main_calendar/presentation/main_calendar_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(AlifCalendar());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AlifCalendar extends StatelessWidget {
+  AlifCalendar({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return AppThemeProvider(
       initialTheme: AppTheme.lightTheme,
-      child: MaterialApp(
-        home: MainCalendarPage(),
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(),
       ),
     );
   }

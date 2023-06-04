@@ -7,7 +7,11 @@ DateTime normalizeDate(DateTime date) {
 
 Weekdays firstWeekdayOfMonth(DateTime date) {
   final weekday = DateTime.utc(date.year, date.month, 1).weekday;
-  switch (weekday) {
+  return getWeekDayByIndex(weekday);
+}
+
+Weekdays getWeekDayByIndex(int index) {
+  switch (index) {
     case 1:
       return Weekdays.mon;
     case 2:
