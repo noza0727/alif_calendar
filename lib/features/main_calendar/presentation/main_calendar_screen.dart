@@ -42,8 +42,8 @@ class MainCalendarScreen extends StatelessWidget {
                       const SizedBox(width: 30),
                       Expanded(
                         child: InkWell(
-                          onTap: () async {
-                            await showCupertinoModalPopup<dynamic>(
+                          onTap: () {
+                            showCupertinoModalPopup<void>(
                               context: context,
                               builder: (BuildContext context) =>
                                   CustomDatePicker(
@@ -127,6 +127,7 @@ class MainCalendarScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
+                                  /// TODO: localization for all texts
                                   Text(
                                     'Schedule',
                                     style: textTheme.headline2,

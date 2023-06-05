@@ -62,7 +62,7 @@ class ViewEventScreen extends StatelessWidget {
                                         child: Container(
                                           height: 40,
                                           width: 40,
-                                          padding: EdgeInsets.all(12),
+                                          padding: const EdgeInsets.all(12),
                                           decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: colorScheme.white),
@@ -88,7 +88,7 @@ class ViewEventScreen extends StatelessWidget {
                                             children: [
                                               SvgPicture.asset(
                                                   Assets.icons.edit),
-                                              SizedBox(width: 4),
+                                              const SizedBox(width: 4),
                                               Text(
                                                 'Edit',
                                                 style: textTheme.subtitle1
@@ -219,7 +219,7 @@ class ViewEventScreen extends StatelessWidget {
                         ),
                       ],
                     )
-                  : SizedBox();
+                  : const SizedBox();
             });
       }),
     );
