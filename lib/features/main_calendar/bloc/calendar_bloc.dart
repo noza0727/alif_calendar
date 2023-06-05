@@ -17,8 +17,10 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
               _loadEventsForMonth(event, emitter),
           loadInitialHandler: (_LoadInitialCalendarEvent event) =>
               _loadInitialHandler(event, emitter),
-          createEvent: (_CreateEventCalendarEvent event) =>
-              _createEvent(event, emitter),
+          createOrUpdateEvent: (_CreateOrUpdateEventCalendarEvent event) =>
+              _createOrUpdateEvent(event, emitter),
+          deleteEvent: (_DeleteEventCalendarEvent event) =>
+              _deleteEvent(event, emitter),
         );
       },
     );
@@ -34,7 +36,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         initial: (_) => _today,
         loading: (s) => s.selectedDate,
         loadSuccess: (s) => s.selectedDate,
-        createEventSuccess: (s) => s.selectedDate,
+        // createEventSuccess: (s) => s.selectedDate,
       );
 
   Future<void> _loadInitialHandler(
@@ -70,13 +72,11 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     );
 
     final eventsOfDay = events
-        .where((e) =>
-            selectedDate.day == e.date.day &&
-            e.date.month == selectedDate.month)
+        .where((e) => date.day == e.date.day && e.date.month == date.month)
         .toList();
     _allEvents = events;
     emitter(CalendarState.loadSuccess(
-      selectedDate: selectedDate,
+      selectedDate: date,
       allEvents: events,
       eventsOfDay: eventsOfDay,
     ));
@@ -86,7 +86,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     _UpdateSelectedDateCalendarEvent event,
     Emitter emitter,
   ) async {
-    emitter(CalendarState.loading(selectedDate: event.date));
+    emitter(CalendarState.loading(selectedDate: selectedDate));
     var events = <EventModel>[];
     final date = event.date;
     if (date.month != selectedDate.month) {
@@ -102,29 +102,58 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
     emitter(CalendarState.loadSuccess(
       selectedDate: event.date,
-      allEvents: events,
-      eventsOfDay: eventsOfDay,
+      allEvents: List.from(events),
+      eventsOfDay: List.from(eventsOfDay),
     ));
   }
 
-  Future<void> _createEvent(
-    _CreateEventCalendarEvent event,
+  Future<void> _createOrUpdateEvent(
+    _CreateOrUpdateEventCalendarEvent event,
     Emitter emitter,
   ) async {
-    final eventModel =
-        await assemble.calendarCacheStorage.createEvent(event.event);
-    _allEvents.add(eventModel);
-
+    if (event.event.id == null) {
+      final eventModel =
+          await assemble.calendarCacheStorage.createEvent(event.event);
+      _allEvents.add(eventModel);
+    } else {
+      await assemble.calendarCacheStorage.updateEvent(event.event);
+      _allEvents.removeWhere((e) => e.id == event.event.id);
+      _allEvents.add(event.event);
+    }
     final eventsOfDay =
         _allEvents.where((e) => e.date.day == selectedDate.day).toList();
 
     emitter(
-      CalendarState.createEventSuccess(
+      CalendarState.loadSuccess(
         selectedDate: selectedDate,
-        allEvents: _allEvents,
+        allEvents: List.from(_allEvents),
         eventsOfDay: eventsOfDay,
       ),
     );
+  }
+
+  Future<void> _deleteEvent(
+    _DeleteEventCalendarEvent event,
+    Emitter emitter,
+  ) async {
+    await assemble.calendarCacheStorage.deleteEvent(event.id);
+
+    var events = <EventModel>[];
+
+    events = await assemble.calendarCacheStorage.getEventsByDateRange(
+      fromDate: selectedDate.copyWith(day: 1),
+      toDate: selectedDate.copyWith(day: lastDayOfMonth(selectedDate).day),
+    );
+
+    _allEvents = events;
+    final eventsOfDay =
+        events.where((e) => e.date.day == selectedDate.day).toList();
+
+    emitter(CalendarState.loadSuccess(
+      selectedDate: selectedDate,
+      allEvents: events,
+      eventsOfDay: eventsOfDay,
+    ));
   }
 }
 
@@ -138,8 +167,11 @@ class CalendarEvent with _$CalendarEvent {
   const factory CalendarEvent.updateSelectedDate({required DateTime date}) =
       _UpdateSelectedDateCalendarEvent;
 
-  const factory CalendarEvent.createEvent({required EventModel event}) =
-      _CreateEventCalendarEvent;
+  const factory CalendarEvent.createOrUpdateEvent({required EventModel event}) =
+      _CreateOrUpdateEventCalendarEvent;
+
+  const factory CalendarEvent.deleteEvent({required int id}) =
+      _DeleteEventCalendarEvent;
 }
 
 @freezed
@@ -154,10 +186,4 @@ class CalendarState with _$CalendarState {
     required List<EventModel> allEvents,
     required List<EventModel> eventsOfDay,
   }) = _LoadSuccessCalendarState;
-
-  const factory CalendarState.createEventSuccess({
-    required DateTime selectedDate,
-    required List<EventModel> allEvents,
-    required List<EventModel> eventsOfDay,
-  }) = _CreateSuccessCalendarState;
 }

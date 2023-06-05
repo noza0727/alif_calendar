@@ -4,10 +4,12 @@ import 'package:alif_calendar/core/utils/date_utils.dart';
 import 'package:alif_calendar/features/main_calendar/bloc/calendar_bloc.dart';
 import 'package:alif_calendar/features/main_calendar/presentation/calendar_table/domain/weekdays.dart';
 import 'package:alif_calendar/features/main_calendar/presentation/calendar_table/presentation/calendar_table.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/widgets/custom_date_picker.dart';
 import 'package:alif_calendar/features/main_calendar/presentation/widgets/event_card.dart';
 import 'package:alif_calendar/features/main_calendar/presentation/widgets/sized_button.dart';
 import 'package:alif_calendar/gen/assets.gen.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,7 +22,6 @@ class MainCalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTheme = AppTheme.of(context);
     final textTheme = appTheme.textTheme;
-    final colorScheme = appTheme.colors;
 
     final bloc = BlocProvider.of<CalendarBloc>(context);
 
@@ -42,12 +43,19 @@ class MainCalendarScreen extends StatelessWidget {
                       Expanded(
                         child: InkWell(
                           onTap: () {
-                            // showDatePicker(
-                            //   context: context,
-                            //   initialDate: bloc.selectedDate,
-                            //   firstDate: bloc.today,
-                            //   lastDate: DateTime(2024),
-                            // );
+                            showCupertinoModalPopup<void>(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  CustomDatePicker(
+                                onDateChanged: (DateTime date) {
+                                  bloc.add(
+                                    CalendarEvent.updateSelectedDate(
+                                        date: date),
+                                  );
+                                },
+                                initialDateTime: bloc.selectedDate,
+                              ),
+                            );
                           },
                           child: Column(
                             children: [
@@ -56,7 +64,7 @@ class MainCalendarScreen extends StatelessWidget {
                                     .toFullName(),
                                 style: textTheme.headline2,
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -85,10 +93,11 @@ class MainCalendarScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 28),
                         CalendarTable(
+                          selectDate: bloc.selectedDate,
                           eventsForMonth: state.maybeMap(
                             orElse: () => [],
                             loadSuccess: (s) => s.allEvents,
-                            createEventSuccess: (s) => s.allEvents,
+                            // createEventSuccess: (s) => s.allEvents,
                           ),
                           onDayTapped: (DateTime dateTapped) {
                             bloc.add(CalendarEvent.updateSelectedDate(
@@ -120,7 +129,7 @@ class MainCalendarScreen extends StatelessWidget {
                                     text: '+ Add Event',
                                     onTap: () {
                                       context.router
-                                          .push(CreateEventPageRoute());
+                                          .push(CreateOrUpdateEventPageRoute());
                                     },
                                   ),
                                 ],
@@ -149,26 +158,42 @@ class MainCalendarScreen extends StatelessWidget {
                                                 padding: const EdgeInsets.only(
                                                   bottom: 18.0,
                                                 ),
-                                                child: EventCard(event: e),
-                                              ))
-                                          .toList(),
-                                  createEventSuccess: (s) => s
-                                          .eventsOfDay.isEmpty
-                                      ? [
-                                          Text(
-                                            'No events',
-                                            textAlign: TextAlign.center,
-                                            style: textTheme.bodyText2,
-                                          )
-                                        ]
-                                      : s.eventsOfDay
-                                          .map<Widget>((e) => Padding(
-                                                padding: const EdgeInsets.only(
-                                                  bottom: 18.0,
+                                                child: EventCard(
+                                                  event: e,
+                                                  onTap: () => e.id != null
+                                                      ? context.router.push(
+                                                          ViewEventPageRoute(
+                                                            eventId: e.id!,
+                                                          ),
+                                                        )
+                                                      : null,
                                                 ),
-                                                child: EventCard(event: e),
                                               ))
                                           .toList(),
+                                  // createEventSuccess: (s) => s
+                                  //         .eventsOfDay.isEmpty
+                                  //     ? [
+                                  //         Text(
+                                  //           'No events',
+                                  //           textAlign: TextAlign.center,
+                                  //           style: textTheme.bodyText2,
+                                  //         )
+                                  //       ]
+                                  //     : s.eventsOfDay
+                                  //         .map<Widget>((e) => Padding(
+                                  //               padding: const EdgeInsets.only(
+                                  //                 bottom: 18.0,
+                                  //               ),
+                                  //               child: EventCard(
+                                  //                   event: e,
+                                  //                   onTap: () =>
+                                  //                       context.router.push(
+                                  //                         ViewEventPageRoute(
+                                  //                           event: e,
+                                  //                         ),
+                                  //                       )),
+                                  //             ))
+                                  //         .toList(),
                                   orElse: () => [],
                                 ),
                               ),

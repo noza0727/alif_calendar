@@ -12,7 +12,7 @@ class EventEntity {
   DateTime date;
 
   EventEntity({
-    required int? id,
+    this.id,
     required this.name,
     required this.priority,
     required this.date,
@@ -51,7 +51,7 @@ class EventEntity {
       };
 
   static EventEntity fromRawData(Map<String, Object?> data) => EventEntity(
-        id: data[EventFields.id] as int?,
+        id: data[EventFields.id] as int,
         name: data[EventFields.name] as String,
         time: data[EventFields.time] as String?,
         priority: data[EventFields.priority] as int,

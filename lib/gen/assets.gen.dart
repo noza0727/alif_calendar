@@ -30,11 +30,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/drop_down_arrow.svg
   String get dropDownArrow => 'assets/icons/drop_down_arrow.svg';
 
+  /// File path: assets/icons/edit.svg
+  String get edit => 'assets/icons/edit.svg';
+
   /// File path: assets/icons/location.svg
   String get location => 'assets/icons/location.svg';
 
   /// File path: assets/icons/notifications.svg
   String get notifications => 'assets/icons/notifications.svg';
+
+  /// File path: assets/icons/trash.svg
+  String get trash => 'assets/icons/trash.svg';
 
   /// List of all assets
   List<String> get values => [
@@ -44,8 +50,10 @@ class $AssetsIconsGen {
         clock,
         downArrow,
         dropDownArrow,
+        edit,
         location,
-        notifications
+        notifications,
+        trash
       ];
 }
 
