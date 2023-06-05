@@ -11,5 +11,7 @@ abstract class CalendarCacheStorage {
     required DateTime toDate,
   });
 
+  Future<void> updateEvent(EventModel event);
+
   Future<void> deleteEvent(int id);
 }

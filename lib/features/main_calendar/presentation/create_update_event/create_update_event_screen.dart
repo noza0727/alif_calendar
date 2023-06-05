@@ -4,22 +4,27 @@ import 'package:alif_calendar/core/presentation/custom_app_bar.dart';
 import 'package:alif_calendar/core/theme/app_theme.dart';
 import 'package:alif_calendar/core/utils/color_utils.dart';
 import 'package:alif_calendar/features/main_calendar/bloc/calendar_bloc.dart';
-import 'package:alif_calendar/features/main_calendar/presentation/create_event/widgets/color_drop_down_button.dart';
-import 'package:alif_calendar/features/main_calendar/presentation/create_event/widgets/custom_text_field.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/create_update_event/widgets/color_drop_down_button.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/create_update_event/widgets/custom_text_field.dart';
+import 'package:alif_calendar/features/main_calendar/presentation/widgets/custom_button.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateEventScreen extends StatefulWidget {
-  const CreateEventScreen({
+class CreateOrUpdateEventScreen extends StatefulWidget {
+  const CreateOrUpdateEventScreen({
     Key? key,
+    this.event,
   }) : super(key: key);
 
+  final EventModel? event;
+
   @override
-  State<CreateEventScreen> createState() => _CreateEventScreenState();
+  State<CreateOrUpdateEventScreen> createState() =>
+      _CreateOrUpdateEventScreenState();
 }
 
-class _CreateEventScreenState extends State<CreateEventScreen> {
+class _CreateOrUpdateEventScreenState extends State<CreateOrUpdateEventScreen> {
   late final TextEditingController _nameController;
   late final TextEditingController _descriptionController;
   late final TextEditingController _locationController;
@@ -34,6 +39,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     _locationController = TextEditingController();
     _timeController = TextEditingController();
     _priority = priorityIndexes.first;
+
+    final event = widget.event;
+    if (event != null) {
+      _nameController.text = event.name ?? '';
+      _descriptionController.text = event.description ?? '';
+      _locationController.text = event.location ?? '';
+      _timeController.text = event.time ?? '';
+      _priority = event.priority;
+    }
   }
 
   @override
@@ -57,8 +71,10 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
           BlocBuilder<CalendarBloc, CalendarState>(builder: (context, state) {
         return Scaffold(
           persistentFooterButtons: [
-            RawMaterialButton(
-              onPressed: () {
+            CustomButton(
+              text: widget.event != null ? 'Edit' : 'Add',
+              color: colorScheme.primary,
+              onTap: () {
                 final name = _nameController.text;
                 final description = _descriptionController.text;
                 final time = _timeController.text;
@@ -67,16 +83,23 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                 if (name.isNotEmpty) {
                   final bloc = BlocProvider.of<CalendarBloc>(context);
                   final date = bloc.selectedDate;
-                  bloc.add(CalendarEvent.createEvent(
-                    event: EventModel(
-                      name: name,
-                      time: time,
-                      priority: _priority,
-                      description: description,
-                      location: location,
-                      date: date,
-                    ),
-                  ));
+                  final event = widget.event != null
+                      ? widget.event!.copyWith(
+                          name: name,
+                          description: description,
+                          time: time,
+                          location: location,
+                          priority: _priority,
+                        )
+                      : EventModel(
+                          name: name,
+                          time: time,
+                          priority: _priority,
+                          description: description,
+                          location: location,
+                          date: date,
+                        );
+                  bloc.add(CalendarEvent.createOrUpdateEvent(event: event));
                   context.router.pop();
                 } else {
                   showDialog(
@@ -90,23 +113,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           ));
                 }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Container(
-                height: 48,
-                decoration: BoxDecoration(
-                    color: colorScheme.primary,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Center(
-                  child: Text(
-                    'Add',
-                    style:
-                        textTheme.headline2.copyWith(color: colorScheme.white),
-                  ),
-                ),
-              ),
-            )
+            ),
           ],
           appBar: const CustomAppBar(),
           body: SafeArea(
@@ -147,7 +154,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                     children: [
                       ColorDropDownButton(
                         values: priorityIndexes,
-                        initialValue: priorityIndexes.first,
+                        initialValue: _priority,
                         onChanged: (value) {
                           _priority = value;
                         },

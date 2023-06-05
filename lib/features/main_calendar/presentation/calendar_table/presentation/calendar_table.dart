@@ -48,6 +48,10 @@ class _CalendarState extends State<CalendarTable> {
     final textTheme = appTheme.textTheme;
     final colorScheme = appTheme.colors;
 
+    if (widget.selectDate != null) {
+      selectedDate = widget.selectDate!;
+      tappedDay = selectedDate;
+    }
     final days = _getDays(selectedDate);
     final padding = widget.horizontalPadding ?? 18.0;
     final width = widget.width ?? MediaQuery.of(context).size.width;

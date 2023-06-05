@@ -21,7 +21,8 @@ mixin _$CalendarEvent {
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
     required TResult Function(DateTime date) updateSelectedDate,
-    required TResult Function(EventModel event) createEvent,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$CalendarEvent {
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
     TResult? Function(DateTime date)? updateSelectedDate,
-    TResult? Function(EventModel event)? createEvent,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$CalendarEvent {
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
     TResult Function(DateTime date)? updateSelectedDate,
-    TResult Function(EventModel event)? createEvent,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,7 +52,9 @@ mixin _$CalendarEvent {
         loadEventsForMonth,
     required TResult Function(_UpdateSelectedDateCalendarEvent value)
         updateSelectedDate,
-    required TResult Function(_CreateEventCalendarEvent value) createEvent,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,7 +64,9 @@ mixin _$CalendarEvent {
         loadEventsForMonth,
     TResult? Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult? Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,7 +76,9 @@ mixin _$CalendarEvent {
         loadEventsForMonth,
     TResult Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,7 +145,8 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
     required TResult Function(DateTime date) updateSelectedDate,
-    required TResult Function(EventModel event) createEvent,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
   }) {
     return loadInitialHandler();
   }
@@ -147,7 +157,8 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
     TResult? Function(DateTime date)? updateSelectedDate,
-    TResult? Function(EventModel event)? createEvent,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
   }) {
     return loadInitialHandler?.call();
   }
@@ -158,7 +169,8 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
     TResult Function(DateTime date)? updateSelectedDate,
-    TResult Function(EventModel event)? createEvent,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (loadInitialHandler != null) {
@@ -176,7 +188,9 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
         loadEventsForMonth,
     required TResult Function(_UpdateSelectedDateCalendarEvent value)
         updateSelectedDate,
-    required TResult Function(_CreateEventCalendarEvent value) createEvent,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
   }) {
     return loadInitialHandler(this);
   }
@@ -189,7 +203,9 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
         loadEventsForMonth,
     TResult? Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult? Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
   }) {
     return loadInitialHandler?.call(this);
   }
@@ -202,7 +218,9 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
         loadEventsForMonth,
     TResult Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
     if (loadInitialHandler != null) {
@@ -289,7 +307,8 @@ class _$_LoadEventsForMonthCalendarEvent
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
     required TResult Function(DateTime date) updateSelectedDate,
-    required TResult Function(EventModel event) createEvent,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
   }) {
     return loadEventsForMonth(date);
   }
@@ -300,7 +319,8 @@ class _$_LoadEventsForMonthCalendarEvent
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
     TResult? Function(DateTime date)? updateSelectedDate,
-    TResult? Function(EventModel event)? createEvent,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
   }) {
     return loadEventsForMonth?.call(date);
   }
@@ -311,7 +331,8 @@ class _$_LoadEventsForMonthCalendarEvent
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
     TResult Function(DateTime date)? updateSelectedDate,
-    TResult Function(EventModel event)? createEvent,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (loadEventsForMonth != null) {
@@ -329,7 +350,9 @@ class _$_LoadEventsForMonthCalendarEvent
         loadEventsForMonth,
     required TResult Function(_UpdateSelectedDateCalendarEvent value)
         updateSelectedDate,
-    required TResult Function(_CreateEventCalendarEvent value) createEvent,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
   }) {
     return loadEventsForMonth(this);
   }
@@ -342,7 +365,9 @@ class _$_LoadEventsForMonthCalendarEvent
         loadEventsForMonth,
     TResult? Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult? Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
   }) {
     return loadEventsForMonth?.call(this);
   }
@@ -355,7 +380,9 @@ class _$_LoadEventsForMonthCalendarEvent
         loadEventsForMonth,
     TResult Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
     if (loadEventsForMonth != null) {
@@ -449,7 +476,8 @@ class _$_UpdateSelectedDateCalendarEvent
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
     required TResult Function(DateTime date) updateSelectedDate,
-    required TResult Function(EventModel event) createEvent,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
   }) {
     return updateSelectedDate(date);
   }
@@ -460,7 +488,8 @@ class _$_UpdateSelectedDateCalendarEvent
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
     TResult? Function(DateTime date)? updateSelectedDate,
-    TResult? Function(EventModel event)? createEvent,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
   }) {
     return updateSelectedDate?.call(date);
   }
@@ -471,7 +500,8 @@ class _$_UpdateSelectedDateCalendarEvent
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
     TResult Function(DateTime date)? updateSelectedDate,
-    TResult Function(EventModel event)? createEvent,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (updateSelectedDate != null) {
@@ -489,7 +519,9 @@ class _$_UpdateSelectedDateCalendarEvent
         loadEventsForMonth,
     required TResult Function(_UpdateSelectedDateCalendarEvent value)
         updateSelectedDate,
-    required TResult Function(_CreateEventCalendarEvent value) createEvent,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
   }) {
     return updateSelectedDate(this);
   }
@@ -502,7 +534,9 @@ class _$_UpdateSelectedDateCalendarEvent
         loadEventsForMonth,
     TResult? Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult? Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
   }) {
     return updateSelectedDate?.call(this);
   }
@@ -515,7 +549,9 @@ class _$_UpdateSelectedDateCalendarEvent
         loadEventsForMonth,
     TResult Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
     if (updateSelectedDate != null) {
@@ -537,21 +573,23 @@ abstract class _UpdateSelectedDateCalendarEvent implements CalendarEvent {
 }
 
 /// @nodoc
-abstract class _$$_CreateEventCalendarEventCopyWith<$Res> {
-  factory _$$_CreateEventCalendarEventCopyWith(
-          _$_CreateEventCalendarEvent value,
-          $Res Function(_$_CreateEventCalendarEvent) then) =
-      __$$_CreateEventCalendarEventCopyWithImpl<$Res>;
+abstract class _$$_CreateOrUpdateEventCalendarEventCopyWith<$Res> {
+  factory _$$_CreateOrUpdateEventCalendarEventCopyWith(
+          _$_CreateOrUpdateEventCalendarEvent value,
+          $Res Function(_$_CreateOrUpdateEventCalendarEvent) then) =
+      __$$_CreateOrUpdateEventCalendarEventCopyWithImpl<$Res>;
   @useResult
   $Res call({EventModel event});
 }
 
 /// @nodoc
-class __$$_CreateEventCalendarEventCopyWithImpl<$Res>
-    extends _$CalendarEventCopyWithImpl<$Res, _$_CreateEventCalendarEvent>
-    implements _$$_CreateEventCalendarEventCopyWith<$Res> {
-  __$$_CreateEventCalendarEventCopyWithImpl(_$_CreateEventCalendarEvent _value,
-      $Res Function(_$_CreateEventCalendarEvent) _then)
+class __$$_CreateOrUpdateEventCalendarEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res,
+        _$_CreateOrUpdateEventCalendarEvent>
+    implements _$$_CreateOrUpdateEventCalendarEventCopyWith<$Res> {
+  __$$_CreateOrUpdateEventCalendarEventCopyWithImpl(
+      _$_CreateOrUpdateEventCalendarEvent _value,
+      $Res Function(_$_CreateOrUpdateEventCalendarEvent) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -559,7 +597,7 @@ class __$$_CreateEventCalendarEventCopyWithImpl<$Res>
   $Res call({
     Object? event = null,
   }) {
-    return _then(_$_CreateEventCalendarEvent(
+    return _then(_$_CreateOrUpdateEventCalendarEvent(
       event: null == event
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
@@ -570,22 +608,23 @@ class __$$_CreateEventCalendarEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
-  const _$_CreateEventCalendarEvent({required this.event});
+class _$_CreateOrUpdateEventCalendarEvent
+    implements _CreateOrUpdateEventCalendarEvent {
+  const _$_CreateOrUpdateEventCalendarEvent({required this.event});
 
   @override
   final EventModel event;
 
   @override
   String toString() {
-    return 'CalendarEvent.createEvent(event: $event)';
+    return 'CalendarEvent.createOrUpdateEvent(event: $event)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateEventCalendarEvent &&
+            other is _$_CreateOrUpdateEventCalendarEvent &&
             (identical(other.event, event) || other.event == event));
   }
 
@@ -595,9 +634,10 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CreateEventCalendarEventCopyWith<_$_CreateEventCalendarEvent>
-      get copyWith => __$$_CreateEventCalendarEventCopyWithImpl<
-          _$_CreateEventCalendarEvent>(this, _$identity);
+  _$$_CreateOrUpdateEventCalendarEventCopyWith<
+          _$_CreateOrUpdateEventCalendarEvent>
+      get copyWith => __$$_CreateOrUpdateEventCalendarEventCopyWithImpl<
+          _$_CreateOrUpdateEventCalendarEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -605,9 +645,10 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
     required TResult Function(DateTime date) updateSelectedDate,
-    required TResult Function(EventModel event) createEvent,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
   }) {
-    return createEvent(event);
+    return createOrUpdateEvent(event);
   }
 
   @override
@@ -616,9 +657,10 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
     TResult? Function(DateTime date)? updateSelectedDate,
-    TResult? Function(EventModel event)? createEvent,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
   }) {
-    return createEvent?.call(event);
+    return createOrUpdateEvent?.call(event);
   }
 
   @override
@@ -627,11 +669,12 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
     TResult Function(DateTime date)? updateSelectedDate,
-    TResult Function(EventModel event)? createEvent,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) {
-    if (createEvent != null) {
-      return createEvent(event);
+    if (createOrUpdateEvent != null) {
+      return createOrUpdateEvent(event);
     }
     return orElse();
   }
@@ -645,9 +688,11 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
         loadEventsForMonth,
     required TResult Function(_UpdateSelectedDateCalendarEvent value)
         updateSelectedDate,
-    required TResult Function(_CreateEventCalendarEvent value) createEvent,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
   }) {
-    return createEvent(this);
+    return createOrUpdateEvent(this);
   }
 
   @override
@@ -658,9 +703,11 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
         loadEventsForMonth,
     TResult? Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult? Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
   }) {
-    return createEvent?.call(this);
+    return createOrUpdateEvent?.call(this);
   }
 
   @override
@@ -671,23 +718,190 @@ class _$_CreateEventCalendarEvent implements _CreateEventCalendarEvent {
         loadEventsForMonth,
     TResult Function(_UpdateSelectedDateCalendarEvent value)?
         updateSelectedDate,
-    TResult Function(_CreateEventCalendarEvent value)? createEvent,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
     required TResult orElse(),
   }) {
-    if (createEvent != null) {
-      return createEvent(this);
+    if (createOrUpdateEvent != null) {
+      return createOrUpdateEvent(this);
     }
     return orElse();
   }
 }
 
-abstract class _CreateEventCalendarEvent implements CalendarEvent {
-  const factory _CreateEventCalendarEvent({required final EventModel event}) =
-      _$_CreateEventCalendarEvent;
+abstract class _CreateOrUpdateEventCalendarEvent implements CalendarEvent {
+  const factory _CreateOrUpdateEventCalendarEvent(
+      {required final EventModel event}) = _$_CreateOrUpdateEventCalendarEvent;
 
   EventModel get event;
   @JsonKey(ignore: true)
-  _$$_CreateEventCalendarEventCopyWith<_$_CreateEventCalendarEvent>
+  _$$_CreateOrUpdateEventCalendarEventCopyWith<
+          _$_CreateOrUpdateEventCalendarEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_DeleteEventCalendarEventCopyWith<$Res> {
+  factory _$$_DeleteEventCalendarEventCopyWith(
+          _$_DeleteEventCalendarEvent value,
+          $Res Function(_$_DeleteEventCalendarEvent) then) =
+      __$$_DeleteEventCalendarEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$_DeleteEventCalendarEventCopyWithImpl<$Res>
+    extends _$CalendarEventCopyWithImpl<$Res, _$_DeleteEventCalendarEvent>
+    implements _$$_DeleteEventCalendarEventCopyWith<$Res> {
+  __$$_DeleteEventCalendarEventCopyWithImpl(_$_DeleteEventCalendarEvent _value,
+      $Res Function(_$_DeleteEventCalendarEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$_DeleteEventCalendarEvent(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_DeleteEventCalendarEvent implements _DeleteEventCalendarEvent {
+  const _$_DeleteEventCalendarEvent({required this.id});
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'CalendarEvent.deleteEvent(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_DeleteEventCalendarEvent &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DeleteEventCalendarEventCopyWith<_$_DeleteEventCalendarEvent>
+      get copyWith => __$$_DeleteEventCalendarEventCopyWithImpl<
+          _$_DeleteEventCalendarEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInitialHandler,
+    required TResult Function(DateTime date) loadEventsForMonth,
+    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(EventModel event) createOrUpdateEvent,
+    required TResult Function(int id) deleteEvent,
+  }) {
+    return deleteEvent(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInitialHandler,
+    TResult? Function(DateTime date)? loadEventsForMonth,
+    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(EventModel event)? createOrUpdateEvent,
+    TResult? Function(int id)? deleteEvent,
+  }) {
+    return deleteEvent?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInitialHandler,
+    TResult Function(DateTime date)? loadEventsForMonth,
+    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(EventModel event)? createOrUpdateEvent,
+    TResult Function(int id)? deleteEvent,
+    required TResult orElse(),
+  }) {
+    if (deleteEvent != null) {
+      return deleteEvent(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInitialCalendarEvent value)
+        loadInitialHandler,
+    required TResult Function(_LoadEventsForMonthCalendarEvent value)
+        loadEventsForMonth,
+    required TResult Function(_UpdateSelectedDateCalendarEvent value)
+        updateSelectedDate,
+    required TResult Function(_CreateOrUpdateEventCalendarEvent value)
+        createOrUpdateEvent,
+    required TResult Function(_DeleteEventCalendarEvent value) deleteEvent,
+  }) {
+    return deleteEvent(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult? Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult? Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
+    TResult? Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult? Function(_DeleteEventCalendarEvent value)? deleteEvent,
+  }) {
+    return deleteEvent?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadInitialCalendarEvent value)? loadInitialHandler,
+    TResult Function(_LoadEventsForMonthCalendarEvent value)?
+        loadEventsForMonth,
+    TResult Function(_UpdateSelectedDateCalendarEvent value)?
+        updateSelectedDate,
+    TResult Function(_CreateOrUpdateEventCalendarEvent value)?
+        createOrUpdateEvent,
+    TResult Function(_DeleteEventCalendarEvent value)? deleteEvent,
+    required TResult orElse(),
+  }) {
+    if (deleteEvent != null) {
+      return deleteEvent(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DeleteEventCalendarEvent implements CalendarEvent {
+  const factory _DeleteEventCalendarEvent({required final int id}) =
+      _$_DeleteEventCalendarEvent;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$_DeleteEventCalendarEventCopyWith<_$_DeleteEventCalendarEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -700,9 +914,6 @@ mixin _$CalendarState {
     required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)
         loadSuccess,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        createEventSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -712,9 +923,6 @@ mixin _$CalendarState {
     TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -724,9 +932,6 @@ mixin _$CalendarState {
     TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -735,8 +940,6 @@ mixin _$CalendarState {
     required TResult Function(_InitialCalendarState value) initial,
     required TResult Function(_LoadingCalendarState value) loading,
     required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
-    required TResult Function(_CreateSuccessCalendarState value)
-        createEventSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -744,7 +947,6 @@ mixin _$CalendarState {
     TResult? Function(_InitialCalendarState value)? initial,
     TResult? Function(_LoadingCalendarState value)? loading,
     TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult? Function(_CreateSuccessCalendarState value)? createEventSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -752,7 +954,6 @@ mixin _$CalendarState {
     TResult Function(_InitialCalendarState value)? initial,
     TResult Function(_LoadingCalendarState value)? loading,
     TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult Function(_CreateSuccessCalendarState value)? createEventSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -819,9 +1020,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)
         loadSuccess,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        createEventSuccess,
   }) {
     return initial();
   }
@@ -834,9 +1032,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
   }) {
     return initial?.call();
   }
@@ -849,9 +1044,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -866,8 +1058,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     required TResult Function(_InitialCalendarState value) initial,
     required TResult Function(_LoadingCalendarState value) loading,
     required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
-    required TResult Function(_CreateSuccessCalendarState value)
-        createEventSuccess,
   }) {
     return initial(this);
   }
@@ -878,7 +1068,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     TResult? Function(_InitialCalendarState value)? initial,
     TResult? Function(_LoadingCalendarState value)? loading,
     TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult? Function(_CreateSuccessCalendarState value)? createEventSuccess,
   }) {
     return initial?.call(this);
   }
@@ -889,7 +1078,6 @@ class _$_InitialCalendarState implements _InitialCalendarState {
     TResult Function(_InitialCalendarState value)? initial,
     TResult Function(_LoadingCalendarState value)? loading,
     TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult Function(_CreateSuccessCalendarState value)? createEventSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -974,9 +1162,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)
         loadSuccess,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        createEventSuccess,
   }) {
     return loading(selectedDate);
   }
@@ -989,9 +1174,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
   }) {
     return loading?.call(selectedDate);
   }
@@ -1004,9 +1186,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1021,8 +1200,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     required TResult Function(_InitialCalendarState value) initial,
     required TResult Function(_LoadingCalendarState value) loading,
     required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
-    required TResult Function(_CreateSuccessCalendarState value)
-        createEventSuccess,
   }) {
     return loading(this);
   }
@@ -1033,7 +1210,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     TResult? Function(_InitialCalendarState value)? initial,
     TResult? Function(_LoadingCalendarState value)? loading,
     TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult? Function(_CreateSuccessCalendarState value)? createEventSuccess,
   }) {
     return loading?.call(this);
   }
@@ -1044,7 +1220,6 @@ class _$_LoadingCalendarState implements _LoadingCalendarState {
     TResult Function(_InitialCalendarState value)? initial,
     TResult Function(_LoadingCalendarState value)? loading,
     TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult Function(_CreateSuccessCalendarState value)? createEventSuccess,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -1177,9 +1352,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)
         loadSuccess,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        createEventSuccess,
   }) {
     return loadSuccess(selectedDate, allEvents, eventsOfDay);
   }
@@ -1192,9 +1364,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
   }) {
     return loadSuccess?.call(selectedDate, allEvents, eventsOfDay);
   }
@@ -1207,9 +1376,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     TResult Function(DateTime selectedDate, List<EventModel> allEvents,
             List<EventModel> eventsOfDay)?
         loadSuccess,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1224,8 +1390,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     required TResult Function(_InitialCalendarState value) initial,
     required TResult Function(_LoadingCalendarState value) loading,
     required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
-    required TResult Function(_CreateSuccessCalendarState value)
-        createEventSuccess,
   }) {
     return loadSuccess(this);
   }
@@ -1236,7 +1400,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     TResult? Function(_InitialCalendarState value)? initial,
     TResult? Function(_LoadingCalendarState value)? loading,
     TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult? Function(_CreateSuccessCalendarState value)? createEventSuccess,
   }) {
     return loadSuccess?.call(this);
   }
@@ -1247,7 +1410,6 @@ class _$_LoadSuccessCalendarState implements _LoadSuccessCalendarState {
     TResult Function(_InitialCalendarState value)? initial,
     TResult Function(_LoadingCalendarState value)? loading,
     TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult Function(_CreateSuccessCalendarState value)? createEventSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -1269,214 +1431,5 @@ abstract class _LoadSuccessCalendarState implements CalendarState {
   List<EventModel> get eventsOfDay;
   @JsonKey(ignore: true)
   _$$_LoadSuccessCalendarStateCopyWith<_$_LoadSuccessCalendarState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_CreateSuccessCalendarStateCopyWith<$Res> {
-  factory _$$_CreateSuccessCalendarStateCopyWith(
-          _$_CreateSuccessCalendarState value,
-          $Res Function(_$_CreateSuccessCalendarState) then) =
-      __$$_CreateSuccessCalendarStateCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {DateTime selectedDate,
-      List<EventModel> allEvents,
-      List<EventModel> eventsOfDay});
-}
-
-/// @nodoc
-class __$$_CreateSuccessCalendarStateCopyWithImpl<$Res>
-    extends _$CalendarStateCopyWithImpl<$Res, _$_CreateSuccessCalendarState>
-    implements _$$_CreateSuccessCalendarStateCopyWith<$Res> {
-  __$$_CreateSuccessCalendarStateCopyWithImpl(
-      _$_CreateSuccessCalendarState _value,
-      $Res Function(_$_CreateSuccessCalendarState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selectedDate = null,
-    Object? allEvents = null,
-    Object? eventsOfDay = null,
-  }) {
-    return _then(_$_CreateSuccessCalendarState(
-      selectedDate: null == selectedDate
-          ? _value.selectedDate
-          : selectedDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      allEvents: null == allEvents
-          ? _value._allEvents
-          : allEvents // ignore: cast_nullable_to_non_nullable
-              as List<EventModel>,
-      eventsOfDay: null == eventsOfDay
-          ? _value._eventsOfDay
-          : eventsOfDay // ignore: cast_nullable_to_non_nullable
-              as List<EventModel>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CreateSuccessCalendarState implements _CreateSuccessCalendarState {
-  const _$_CreateSuccessCalendarState(
-      {required this.selectedDate,
-      required final List<EventModel> allEvents,
-      required final List<EventModel> eventsOfDay})
-      : _allEvents = allEvents,
-        _eventsOfDay = eventsOfDay;
-
-  @override
-  final DateTime selectedDate;
-  final List<EventModel> _allEvents;
-  @override
-  List<EventModel> get allEvents {
-    if (_allEvents is EqualUnmodifiableListView) return _allEvents;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_allEvents);
-  }
-
-  final List<EventModel> _eventsOfDay;
-  @override
-  List<EventModel> get eventsOfDay {
-    if (_eventsOfDay is EqualUnmodifiableListView) return _eventsOfDay;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_eventsOfDay);
-  }
-
-  @override
-  String toString() {
-    return 'CalendarState.createEventSuccess(selectedDate: $selectedDate, allEvents: $allEvents, eventsOfDay: $eventsOfDay)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CreateSuccessCalendarState &&
-            (identical(other.selectedDate, selectedDate) ||
-                other.selectedDate == selectedDate) &&
-            const DeepCollectionEquality()
-                .equals(other._allEvents, _allEvents) &&
-            const DeepCollectionEquality()
-                .equals(other._eventsOfDay, _eventsOfDay));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      selectedDate,
-      const DeepCollectionEquality().hash(_allEvents),
-      const DeepCollectionEquality().hash(_eventsOfDay));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CreateSuccessCalendarStateCopyWith<_$_CreateSuccessCalendarState>
-      get copyWith => __$$_CreateSuccessCalendarStateCopyWithImpl<
-          _$_CreateSuccessCalendarState>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(DateTime selectedDate) loading,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        loadSuccess,
-    required TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)
-        createEventSuccess,
-  }) {
-    return createEventSuccess(selectedDate, allEvents, eventsOfDay);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(DateTime selectedDate)? loading,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        loadSuccess,
-    TResult? Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
-  }) {
-    return createEventSuccess?.call(selectedDate, allEvents, eventsOfDay);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(DateTime selectedDate)? loading,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        loadSuccess,
-    TResult Function(DateTime selectedDate, List<EventModel> allEvents,
-            List<EventModel> eventsOfDay)?
-        createEventSuccess,
-    required TResult orElse(),
-  }) {
-    if (createEventSuccess != null) {
-      return createEventSuccess(selectedDate, allEvents, eventsOfDay);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialCalendarState value) initial,
-    required TResult Function(_LoadingCalendarState value) loading,
-    required TResult Function(_LoadSuccessCalendarState value) loadSuccess,
-    required TResult Function(_CreateSuccessCalendarState value)
-        createEventSuccess,
-  }) {
-    return createEventSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialCalendarState value)? initial,
-    TResult? Function(_LoadingCalendarState value)? loading,
-    TResult? Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult? Function(_CreateSuccessCalendarState value)? createEventSuccess,
-  }) {
-    return createEventSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialCalendarState value)? initial,
-    TResult Function(_LoadingCalendarState value)? loading,
-    TResult Function(_LoadSuccessCalendarState value)? loadSuccess,
-    TResult Function(_CreateSuccessCalendarState value)? createEventSuccess,
-    required TResult orElse(),
-  }) {
-    if (createEventSuccess != null) {
-      return createEventSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateSuccessCalendarState implements CalendarState {
-  const factory _CreateSuccessCalendarState(
-          {required final DateTime selectedDate,
-          required final List<EventModel> allEvents,
-          required final List<EventModel> eventsOfDay}) =
-      _$_CreateSuccessCalendarState;
-
-  DateTime get selectedDate;
-  List<EventModel> get allEvents;
-  List<EventModel> get eventsOfDay;
-  @JsonKey(ignore: true)
-  _$$_CreateSuccessCalendarStateCopyWith<_$_CreateSuccessCalendarState>
       get copyWith => throw _privateConstructorUsedError;
 }

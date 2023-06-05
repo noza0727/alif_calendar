@@ -40,4 +40,10 @@ class CalendarCacheStorageImpl implements CalendarCacheStorage {
   Future<void> deleteEvent(int id) async {
     await _database.delete(id);
   }
+
+  @override
+  Future<void> updateEvent(EventModel eventModel) async {
+    final f =
+        await _database.update(EventModelToEntityMapper().map(eventModel));
+  }
 }

@@ -26,7 +26,6 @@ class CalendarDatabase {
     const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     const textType = 'TEXT NOT NULL';
     const textNullType = 'TEXT';
-    const boolType = 'BOOLEAN NOT NULL';
     const integerType = 'INTEGER NOT NULL';
 
     await db.execute('''
@@ -80,7 +79,9 @@ class CalendarDatabase {
       ],
     );
 
-    return maps.map(EventEntity.fromRawData).toList();
+    final events = maps.map(EventEntity.fromRawData).toList();
+
+    return events;
   }
 
   Future<List<EventEntity>> retrieveAllEvents() async {
