@@ -18,9 +18,12 @@ class CalendarCacheStorageImpl implements CalendarCacheStorage {
   }
 
   @override
-  Future<EventModel> getEvent(int id) async {
+  Future<EventModel?> getEvent(int id) async {
     final eventEntity = await _database.readEvent(id);
-    return EventModelFromEntityMapper().map(eventEntity);
+
+    return eventEntity != null
+        ? EventModelFromEntityMapper().map(eventEntity)
+        : null;
   }
 
   @override

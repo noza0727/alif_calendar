@@ -4,7 +4,7 @@ import 'package:alif_calendar/core/domain/event_model.dart';
 abstract class CalendarCacheStorage {
   Future<EventModel> createEvent(EventModel event);
 
-  Future<EventModel> getEvent(int id);
+  Future<EventModel?> getEvent(int id);
 
   Future<List<EventModel>> getEventsByDateRange({
     required DateTime fromDate,
