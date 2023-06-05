@@ -36,7 +36,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         initial: (_) => _today,
         loading: (s) => s.selectedDate,
         loadSuccess: (s) => s.selectedDate,
-        // createEventSuccess: (s) => s.selectedDate,
+        error: (s) => s.selectedDate,
       );
 
   Future<void> _loadInitialHandler(
@@ -89,7 +89,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     emitter(CalendarState.loading(selectedDate: selectedDate));
     var events = <EventModel>[];
     final date = event.date;
-    if (date.month != selectedDate.month) {
+    if (date.month != selectedDate.month || date.year != selectedDate.year) {
       events = await assemble.calendarCacheStorage.getEventsByDateRange(
         fromDate: date.copyWith(day: 1),
         toDate: date.copyWith(day: lastDayOfMonth(date).day),
@@ -138,20 +138,19 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
   ) async {
     await assemble.calendarCacheStorage.deleteEvent(event.id);
 
-    var events = <EventModel>[];
+    final eventExists = await assemble.calendarCacheStorage.getEvent(event.id);
+    if (eventExists != null) {
+      emitter(CalendarState.error(selectedDate: selectedDate));
+    }
 
-    events = await assemble.calendarCacheStorage.getEventsByDateRange(
-      fromDate: selectedDate.copyWith(day: 1),
-      toDate: selectedDate.copyWith(day: lastDayOfMonth(selectedDate).day),
-    );
+    _allEvents.removeWhere((e) => e.id == event.id);
 
-    _allEvents = events;
     final eventsOfDay =
-        events.where((e) => e.date.day == selectedDate.day).toList();
+        _allEvents.where((e) => e.date.day == selectedDate.day).toList();
 
     emitter(CalendarState.loadSuccess(
       selectedDate: selectedDate,
-      allEvents: events,
+      allEvents: _allEvents,
       eventsOfDay: eventsOfDay,
     ));
   }
@@ -186,4 +185,7 @@ class CalendarState with _$CalendarState {
     required List<EventModel> allEvents,
     required List<EventModel> eventsOfDay,
   }) = _LoadSuccessCalendarState;
+
+  const factory CalendarState.error({required DateTime selectedDate}) =
+      _ErrorCalendarState;
 }

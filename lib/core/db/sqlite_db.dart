@@ -48,7 +48,7 @@ class CalendarDatabase {
     return event.copyWith(id: id);
   }
 
-  Future<EventEntity> readEvent(int id) async {
+  Future<EventEntity?> readEvent(int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
@@ -61,7 +61,7 @@ class CalendarDatabase {
     if (maps.isNotEmpty) {
       return EventEntity.fromRawData(maps.first);
     } else {
-      throw Exception('Event with ID $id not found');
+      return null;
     }
   }
 

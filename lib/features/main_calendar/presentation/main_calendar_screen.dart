@@ -170,30 +170,6 @@ class MainCalendarScreen extends StatelessWidget {
                                                 ),
                                               ))
                                           .toList(),
-                                  // createEventSuccess: (s) => s
-                                  //         .eventsOfDay.isEmpty
-                                  //     ? [
-                                  //         Text(
-                                  //           'No events',
-                                  //           textAlign: TextAlign.center,
-                                  //           style: textTheme.bodyText2,
-                                  //         )
-                                  //       ]
-                                  //     : s.eventsOfDay
-                                  //         .map<Widget>((e) => Padding(
-                                  //               padding: const EdgeInsets.only(
-                                  //                 bottom: 18.0,
-                                  //               ),
-                                  //               child: EventCard(
-                                  //                   event: e,
-                                  //                   onTap: () =>
-                                  //                       context.router.push(
-                                  //                         ViewEventPageRoute(
-                                  //                           event: e,
-                                  //                         ),
-                                  //                       )),
-                                  //             ))
-                                  //         .toList(),
                                   orElse: () => [],
                                 ),
                               ),
