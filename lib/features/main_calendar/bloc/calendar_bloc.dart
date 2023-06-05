@@ -29,6 +29,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
 
   final DateTime _today = DateTime.now();
   late List<EventModel> _allEvents;
+  bool _selectDateByFilter = false;
 
   DateTime get today => _today;
 
@@ -38,6 +39,8 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         loadSuccess: (s) => s.selectedDate,
         error: (s) => s.selectedDate,
       );
+
+  bool get selectDateByFilter => _selectDateByFilter;
 
   Future<void> _loadInitialHandler(
     _LoadInitialCalendarEvent event,
@@ -64,6 +67,8 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     Emitter emitter,
   ) async {
     emitter(CalendarState.loading(selectedDate: selectedDate));
+    _selectDateByFilter = false;
+
     final date = event.date;
 
     final events = await assemble.calendarCacheStorage.getEventsByDateRange(
@@ -76,7 +81,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
         .toList();
     _allEvents = events;
     emitter(CalendarState.loadSuccess(
-      selectedDate: date,
+      selectedDate: selectedDate,
       allEvents: events,
       eventsOfDay: eventsOfDay,
     ));
@@ -87,6 +92,7 @@ class CalendarBloc extends Bloc<CalendarEvent, CalendarState> {
     Emitter emitter,
   ) async {
     emitter(CalendarState.loading(selectedDate: selectedDate));
+    _selectDateByFilter = event.byFilter;
     var events = <EventModel>[];
     final date = event.date;
     if (date.month != selectedDate.month || date.year != selectedDate.year) {
@@ -163,8 +169,10 @@ class CalendarEvent with _$CalendarEvent {
   const factory CalendarEvent.loadEventsForMonth({required DateTime date}) =
       _LoadEventsForMonthCalendarEvent;
 
-  const factory CalendarEvent.updateSelectedDate({required DateTime date}) =
-      _UpdateSelectedDateCalendarEvent;
+  const factory CalendarEvent.updateSelectedDate({
+    required DateTime date,
+    required bool byFilter,
+  }) = _UpdateSelectedDateCalendarEvent;
 
   const factory CalendarEvent.createOrUpdateEvent({required EventModel event}) =
       _CreateOrUpdateEventCalendarEvent;

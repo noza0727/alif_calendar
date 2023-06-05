@@ -139,7 +139,7 @@ class _CalendarState extends State<CalendarTable> {
                                 tappedDay = selectedDate.copyWith(day: day);
                               });
                               if (widget.onDayTapped != null) {
-                                widget.onDayTapped!(tappedDay!);
+                                widget.onDayTapped!(tappedDay);
                               }
                             },
                             child: SizedBox(
@@ -149,9 +149,8 @@ class _CalendarState extends State<CalendarTable> {
                                 children: [
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: tappedDay != null &&
-                                              tappedDay!.day == day &&
-                                              tappedDay!.month ==
+                                      color: tappedDay.day == day &&
+                                              tappedDay.month ==
                                                   selectedDate.month
                                           ? colorScheme.primary
                                           : null,
@@ -163,9 +162,8 @@ class _CalendarState extends State<CalendarTable> {
                                         '${day ?? ''}',
                                         textAlign: TextAlign.center,
                                         style: textTheme.subtitle1.copyWith(
-                                            color: tappedDay != null &&
-                                                    tappedDay!.day == day &&
-                                                    tappedDay!.month ==
+                                            color: tappedDay.day == day &&
+                                                    tappedDay.month ==
                                                         selectedDate.month
                                                 ? colorScheme.white
                                                 : colorScheme.surface),

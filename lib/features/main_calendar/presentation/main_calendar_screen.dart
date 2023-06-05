@@ -42,15 +42,17 @@ class MainCalendarScreen extends StatelessWidget {
                       const SizedBox(width: 30),
                       Expanded(
                         child: InkWell(
-                          onTap: () {
-                            showCupertinoModalPopup<void>(
+                          onTap: () async {
+                            await showCupertinoModalPopup<dynamic>(
                               context: context,
                               builder: (BuildContext context) =>
                                   CustomDatePicker(
                                 onDateChanged: (DateTime date) {
                                   bloc.add(
                                     CalendarEvent.updateSelectedDate(
-                                        date: date),
+                                      date: date,
+                                      byFilter: true,
+                                    ),
                                   );
                                 },
                                 initialDateTime: bloc.selectedDate,
@@ -93,7 +95,9 @@ class MainCalendarScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 28),
                         CalendarTable(
-                          selectDate: bloc.selectedDate,
+                          selectDate: bloc.selectDateByFilter
+                              ? bloc.selectedDate
+                              : null,
                           eventsForMonth: state.maybeMap(
                             orElse: () => [],
                             loadSuccess: (s) => s.allEvents,
@@ -101,7 +105,9 @@ class MainCalendarScreen extends StatelessWidget {
                           ),
                           onDayTapped: (DateTime dateTapped) {
                             bloc.add(CalendarEvent.updateSelectedDate(
-                                date: dateTapped));
+                              date: dateTapped,
+                              byFilter: false,
+                            ));
                           },
                           onMonthChanged: (DateTime viewingMonthDate) {
                             bloc.add(CalendarEvent.loadEventsForMonth(

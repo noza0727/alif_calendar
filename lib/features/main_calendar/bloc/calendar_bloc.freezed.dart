@@ -20,7 +20,7 @@ mixin _$CalendarEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) =>
@@ -29,7 +29,7 @@ mixin _$CalendarEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) =>
@@ -38,7 +38,7 @@ mixin _$CalendarEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
@@ -144,7 +144,7 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) {
@@ -156,7 +156,7 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) {
@@ -168,7 +168,7 @@ class _$_LoadInitialCalendarEvent implements _LoadInitialCalendarEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
@@ -306,7 +306,7 @@ class _$_LoadEventsForMonthCalendarEvent
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) {
@@ -318,7 +318,7 @@ class _$_LoadEventsForMonthCalendarEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) {
@@ -330,7 +330,7 @@ class _$_LoadEventsForMonthCalendarEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
@@ -410,7 +410,7 @@ abstract class _$$_UpdateSelectedDateCalendarEventCopyWith<$Res> {
           $Res Function(_$_UpdateSelectedDateCalendarEvent) then) =
       __$$_UpdateSelectedDateCalendarEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({DateTime date});
+  $Res call({DateTime date, bool byFilter});
 }
 
 /// @nodoc
@@ -427,12 +427,17 @@ class __$$_UpdateSelectedDateCalendarEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? date = null,
+    Object? byFilter = null,
   }) {
     return _then(_$_UpdateSelectedDateCalendarEvent(
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      byFilter: null == byFilter
+          ? _value.byFilter
+          : byFilter // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -441,14 +446,17 @@ class __$$_UpdateSelectedDateCalendarEventCopyWithImpl<$Res>
 
 class _$_UpdateSelectedDateCalendarEvent
     implements _UpdateSelectedDateCalendarEvent {
-  const _$_UpdateSelectedDateCalendarEvent({required this.date});
+  const _$_UpdateSelectedDateCalendarEvent(
+      {required this.date, required this.byFilter});
 
   @override
   final DateTime date;
+  @override
+  final bool byFilter;
 
   @override
   String toString() {
-    return 'CalendarEvent.updateSelectedDate(date: $date)';
+    return 'CalendarEvent.updateSelectedDate(date: $date, byFilter: $byFilter)';
   }
 
   @override
@@ -456,11 +464,13 @@ class _$_UpdateSelectedDateCalendarEvent
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UpdateSelectedDateCalendarEvent &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.byFilter, byFilter) ||
+                other.byFilter == byFilter));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, date);
+  int get hashCode => Object.hash(runtimeType, date, byFilter);
 
   @JsonKey(ignore: true)
   @override
@@ -475,11 +485,11 @@ class _$_UpdateSelectedDateCalendarEvent
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) {
-    return updateSelectedDate(date);
+    return updateSelectedDate(date, byFilter);
   }
 
   @override
@@ -487,11 +497,11 @@ class _$_UpdateSelectedDateCalendarEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) {
-    return updateSelectedDate?.call(date);
+    return updateSelectedDate?.call(date, byFilter);
   }
 
   @override
@@ -499,13 +509,13 @@ class _$_UpdateSelectedDateCalendarEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
   }) {
     if (updateSelectedDate != null) {
-      return updateSelectedDate(date);
+      return updateSelectedDate(date, byFilter);
     }
     return orElse();
   }
@@ -563,9 +573,11 @@ class _$_UpdateSelectedDateCalendarEvent
 
 abstract class _UpdateSelectedDateCalendarEvent implements CalendarEvent {
   const factory _UpdateSelectedDateCalendarEvent(
-      {required final DateTime date}) = _$_UpdateSelectedDateCalendarEvent;
+      {required final DateTime date,
+      required final bool byFilter}) = _$_UpdateSelectedDateCalendarEvent;
 
   DateTime get date;
+  bool get byFilter;
   @JsonKey(ignore: true)
   _$$_UpdateSelectedDateCalendarEventCopyWith<
           _$_UpdateSelectedDateCalendarEvent>
@@ -644,7 +656,7 @@ class _$_CreateOrUpdateEventCalendarEvent
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) {
@@ -656,7 +668,7 @@ class _$_CreateOrUpdateEventCalendarEvent
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) {
@@ -668,7 +680,7 @@ class _$_CreateOrUpdateEventCalendarEvent
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
@@ -809,7 +821,7 @@ class _$_DeleteEventCalendarEvent implements _DeleteEventCalendarEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInitialHandler,
     required TResult Function(DateTime date) loadEventsForMonth,
-    required TResult Function(DateTime date) updateSelectedDate,
+    required TResult Function(DateTime date, bool byFilter) updateSelectedDate,
     required TResult Function(EventModel event) createOrUpdateEvent,
     required TResult Function(int id) deleteEvent,
   }) {
@@ -821,7 +833,7 @@ class _$_DeleteEventCalendarEvent implements _DeleteEventCalendarEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInitialHandler,
     TResult? Function(DateTime date)? loadEventsForMonth,
-    TResult? Function(DateTime date)? updateSelectedDate,
+    TResult? Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult? Function(EventModel event)? createOrUpdateEvent,
     TResult? Function(int id)? deleteEvent,
   }) {
@@ -833,7 +845,7 @@ class _$_DeleteEventCalendarEvent implements _DeleteEventCalendarEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInitialHandler,
     TResult Function(DateTime date)? loadEventsForMonth,
-    TResult Function(DateTime date)? updateSelectedDate,
+    TResult Function(DateTime date, bool byFilter)? updateSelectedDate,
     TResult Function(EventModel event)? createOrUpdateEvent,
     TResult Function(int id)? deleteEvent,
     required TResult orElse(),
